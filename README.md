@@ -260,4 +260,4 @@ Image models can drift: walls shift, cabinets gain extra doors, perspective chan
 
 ## License
 
-*TODO: add a license (for example MIT) and state it here.*
+*This project is licensed under the **GNU General Public License v3.0 (GPLv3)**. See the [LICENSE](LICENSE) file for details.*
