@@ -197,12 +197,6 @@ Notes:
 | Lighting | 10 modes, from Neutral Daylight (default) to Cinematic Low-Key |
 | Camera | 10 profiles, from Full-Frame DSLR (24mm Tilt-Shift) to OM System OM-1 Mark II |
 
-### A note on Black Basalt
-
-**Black Basalt** is a dense, fine-grained, obsidian-black extrusive igneous rock. In this application it is a **flooring stone** (it appears in the *Flooring* material list and the *Flooring Materials* swatch folder) and can be combined with any stone finish, including **Honed**. It is not part of the 54-stone countertop list.
-
-*TODO for the maintainer: the app currently stores no descriptive phrase for Black Basalt. The description above is general geology, not text the app injects into the prompt.*
-
 ---
 
 ## Geometric Anchoring
