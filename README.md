@@ -4,8 +4,6 @@
 
 You give it a flat-colour technical mask of a kitchen (exported from Blender), choose materials, finishes, lighting and camera for every component, and it compiles one precise, copy-ready prompt. Nothing is uploaded anywhere: the app is one HTML file that runs entirely in your browser.
 
-![Kitchen Prompt Generator: live prompt with the component panel on the left](docs/screenshot-prompt.png)
-
 ---
 
 ## Table of Contents
@@ -35,8 +33,6 @@ You give it a flat-colour technical mask of a kitchen (exported from Blender), c
   - `clear tag` erases the text inserted from the selected tag and removes the tag's highlight.
 - Tags can be inserted with one click, renamed, edited (the pencil icon, or double-click) and deleted. Inserting a tag keeps a one-step **undo** of the replaced text.
 - Responsive layout: the text area uses the full panel width and the buttons sit above it.
-
-![Tag buttons above the appendix text area, with a saved tag below](docs/screenshot-tags.png)
 
 ### Mask-Reference Processing
 - Works from a **flat-colour technical mask** with black wireframe outlines, produced by the included Blender add-on.
@@ -91,7 +87,8 @@ Any-Kitchen-Prompt-Generator/
 ├── Flooring Patterns Wood/               # 8 wood laying patterns
 ├── Grain & cut/                          # 9 grain / cut swatches
 ├── Wood Species/                         # 18 wood species swatches
-└── docs/                                 # README screenshots
+├── screenshot-prompt.png                 # Prompt Generator view
+└── screenshot-tags.png                   # Tag Management view
 ```
 
 | Item | Purpose |
@@ -154,9 +151,13 @@ cd Any-Kitchen-Prompt-Generator
 
 The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tests** and **Config & Log**. The last one provides **Export JSON** / **Import** of your full configuration and a run log.
 
+![Prompt Generator View](screenshot-prompt.png)
+
 ---
 
 ## Tag Management
+
+![Tag Management View](screenshot-tags.png)
 
 | Action | How |
 |---|---|
@@ -253,5 +254,3 @@ Image models can drift: walls shift, cabinets gain extra doors, perspective chan
 ## License
 
 *TODO: add a license (for example MIT) and state it here.*
-![Prompt Generator View](screenshot-prompt.png)
-![Tag Management View](screenshot-tags.png)
