@@ -88,6 +88,7 @@ Any-Kitchen-Prompt-Generator/
 ├── Grain & cut/                          # 9 grain / cut swatches
 ├── Wood Species/                         # 18 wood species swatches
 ├── screenshot-prompt.png                 # Prompt Generator view
+├── screenshot-image-lab.png              # Image Lab (mask eyedropper) view
 └── screenshot-tags.png                   # Tag Management view
 ```
 
@@ -152,6 +153,10 @@ cd Any-Kitchen-Prompt-Generator
 The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tests** and **Config & Log**. The last one provides **Export JSON** / **Import** of your full configuration and a run log.
 
 ![Prompt Generator View](screenshot-prompt.png)
+
+![Image Lab: mask eyedropper with a sample mask](screenshot-image-lab.png)
+
+*Image Lab, step 1 (mask eyedropper): a mask is loaded, and clicking a region assigns its colour to the selected component. Components with a colour show their share of the mask and are marked "in prompt". Components without one are "excluded". The mask shown is a simple sample made for this screenshot.*
 
 ---
 
