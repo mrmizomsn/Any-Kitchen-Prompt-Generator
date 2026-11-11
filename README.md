@@ -1,6 +1,6 @@
 # Kitchen Prompt Generator (V3.25)
 
-**An offline, single-file web tool that builds ultra-high-end, photorealistic architectural kitchen-interior prompts for the Nano Banana image model.**
+**An offline, single-file web tool that builds ultra-high-end, photorealistic architectural kitchen-interior prompts for modern generative image AI models.**
 
 You give it a flat-colour technical mask of a kitchen (exported from Blender), choose materials, finishes, lighting and camera for every component, and it compiles one precise, copy-ready prompt. Nothing is uploaded anywhere: the app is one HTML file that runs entirely in your browser.
 
