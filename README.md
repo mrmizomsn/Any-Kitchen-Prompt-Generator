@@ -142,7 +142,9 @@ cd Any-Kitchen-Prompt-Generator
 
 ## Using the Prompt Generator
 
-1. **(Optional) Load your mask.** Open **Image Lab → Mask eyedropper**, upload `_mask.png`, and load `_mask.json` as the Blender legend. Without a mask, the app produces a no-mask prompt that lists every component.
+1. **Automatic Legend Loading:** load **_mask.json**,as your Blender legend. All mask colors assigned to each object in Blender will automatically load inside the Image Lab
+**Manual Component Mapping (Optional):** Open Image Lab and upload your **_mask.png** then choose a component from the drop-down menu, and click directly on the corresponding part of the image mask; the picked mask color will be assigned to that part automatically.
+***Note**: Without a mask loaded, the application generates a standard **"no-mask"** prompt listing every component.
 2. **Configure each component** in the left panel: material, colour, coating, sheen, wood species, grain and cut, stone and finish, hardware, lighting and so on.
 3. **Add your own wording** in each component's *Custom Appendix Text*, or insert a saved tag.
 4. **Pick a lighting mode and a camera profile** in the lighting section and in *Template Structure Settings*.
