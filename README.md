@@ -138,6 +138,7 @@ cd Any-Kitchen-Prompt-Generator
    - `<blendname>_mask.json`: the legend (schema 3)
 5. The add-on locks render settings during export (Workbench engine, flat shading, no anti-aliasing, Standard view transform) and restores your original settings afterwards. Component colours are kept visibly distinct from one another using CIEDE2000 (ΔE ≥ 5).
 
+![Blender addon](screenshot-Blender mask.jpg)
 ---
 
 ## Using the Prompt Generator
