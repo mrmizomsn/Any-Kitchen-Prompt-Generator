@@ -150,7 +150,7 @@ cd Any-Kitchen-Prompt-Generator
    - `<blendname>_mask.json`: the legend (schema 3)
 5. The add-on locks render settings during export (Workbench engine, flat shading, no anti-aliasing, Standard view transform) and restores your original settings afterwards. Component colours are kept visibly distinct from one another using CIEDE2000 (ΔE ≥ 5).
 
-![Blender addon](screenshots/screenshot-Blender-mask.png)
+![Blender addon](screenshots/screenshot-Blender-mask.webp)
 ---
 
 ## Using the Prompt Generator
@@ -167,15 +167,15 @@ cd Any-Kitchen-Prompt-Generator
 
 The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tests** and **Config & Log**. The last one provides **Export JSON** / **Import** of your full configuration and a run log.
 
-![Prompt Generator View](screenshots/screenshot-prompt.png)
+![Prompt Generator View](screenshots/screenshot-prompt.webp)
 
 
-![Image Lab: mask eyedropper with a sample mask](screenshots/screenshot-imagelab-json.png)
+![Image Lab: mask eyedropper with a sample mask](screenshots/screenshot-imagelab-json.webp)
 
 *Image Lab, step 1: A Blender-generated legend JSON file (such as Kitchen 01_mask.json) is loaded into the Image Lab, automatically parses the scene's color-coding schema and injects the precise HEX color masks into their corresponding architectural components (such as base cabinets, countertops, flooring, and hardware).*
 
 
-![Image Lab: mask eyedropper with a sample mask](screenshots/screenshot-image-lab.png)
+![Image Lab: mask eyedropper with a sample mask](screenshots/screenshot-image-lab.webp)
 
 *Image Lab, step 1 Manual Component Mapping(Without JSON): A (mask.png) is loaded without a JSON file, clicking a region assigns its colour to the selected component. Components with a colour show their share of the mask and are marked "in prompt". Components without one are "excluded".*
 
@@ -184,18 +184,18 @@ The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tes
 
 Customize the underlying prompt architecture by editing template blocks, reordering sections, and inserting dynamic tags.
 
-![Prompt Structure](screenshots/screenshot-Prompt-structure.png)
+![Prompt Structure](screenshots/screenshot-Prompt-structure.webp)
 
 ## Built-in tags
 
 Inject Pre-configured parameters defining professional camera models, optics, cinematic lighting rigs, and rendering engine parameters to anchor the prompt's visual quality.
 
-![Built-in tags](screenshots/screenshot-Built-in-tages01.png)
-![Built-in tags](screenshots/screenshot-Built-in-tages02.png)
+![Built-in tags](screenshots/screenshot-Built-in-tages01.webp)
+![Built-in tags](screenshots/screenshot-Built-in-tages02.webp)
 
 ## Tag Management
 
-![Tag Management View](screenshots/screenshot-tags.png)
+![Tag Management View](screenshots/screenshot-tags.webp)
 
 | Action | How |
 |---|---|
@@ -217,8 +217,8 @@ Notes:
 
 Selecting any material from the list—along with its finish type, grain, cut, surface pigment, and pigment colors—automatically injects its complete physical specification into the corresponding component slot of the prompt, paired with its assigned mask color.
 
-![Marble list](screenshots/screenshot-Marble-list.png)
-![Wood list](screenshots/screenshot-Wood-species.png)
+![Marble list](screenshots/screenshot-Marble-list.webp)
+![Wood list](screenshots/screenshot-Wood-species.webp)
 
 | Area | Options |
 |---|---|
