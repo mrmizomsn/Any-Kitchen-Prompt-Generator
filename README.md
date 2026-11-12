@@ -172,7 +172,8 @@ Customize the underlying prompt architecture by editing template blocks, reorder
 
 Inject Pre-configured parameters defining professional camera models, optics, cinematic lighting rigs, and rendering engine parameters to anchor the prompt's visual quality.
 
-![Built-in tags](screenshots/screenshot-Built-in-tages.png)
+![Built-in tags](screenshots/screenshot-Built-in-tages01.png)
+![Built-in tags](screenshots/screenshot-Built-in-tages02.png)
 
 ## Tag Management
 
