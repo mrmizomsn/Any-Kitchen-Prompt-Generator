@@ -138,7 +138,7 @@ cd Any-Kitchen-Prompt-Generator
    - `<blendname>_mask.json`: the legend (schema 3)
 5. The add-on locks render settings during export (Workbench engine, flat shading, no anti-aliasing, Standard view transform) and restores your original settings afterwards. Component colours are kept visibly distinct from one another using CIEDE2000 (ΔE ≥ 5).
 
-![Blender addon](screenshot-Blender mask.jpg)
+![Blender addon](screenshot-Blender-mask.png)
 ---
 
 ## Using the Prompt Generator
@@ -166,13 +166,13 @@ The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tes
 
 Customize the underlying prompt architecture by editing template blocks, reordering sections, and inserting dynamic tags.
 
-![Prompt Structure](screenshot-Prompt structure.jpg)
+![Prompt Structure](screenshot-Prompt-structure.png)
 
 ## Built-in tags
 
 Inject Pre-configured parameters defining professional camera models, optics, cinematic lighting rigs, and rendering engine parameters to anchor the prompt's visual quality.
 
-![Built-in tags](screenshot-Built-in tages.jpg)
+![Built-in tags](screenshot-Built-in-tages.png)
 
 ## Tag Management
 
@@ -196,8 +196,8 @@ Notes:
 
 ## Material Matrix
 
-![Marble list](screenshot-Marble list.jpg)
-![Wood list](screenshot-Wood species.jpg)
+![Marble list](screenshot-Marble-list.png)
+![Wood list](screenshot-Wood-species.png)
 
 | Area | Options |
 |---|---|
