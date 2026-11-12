@@ -1,0 +1,558 @@
+{
+ "schema": 3,
+ "version": "3.0.0",
+ "blend": "Kitchen 01.blend",
+ "camera": "Hugin_Cam_002",
+ "resolution": [
+  1350,
+  1350
+ ],
+ "aspect_ratio": 1.0,
+ "mask_all_scene": false,
+ "outline": {
+  "requested": true,
+  "applied": true,
+  "hex": "#000000",
+  "thickness_px": 1.5,
+  "error": ""
+ },
+ "components": [
+  {
+   "key": "base",
+   "label": "Base Cabinets & Plinth",
+   "hex": "#FF0000",
+   "color_name": "red",
+   "objects": [
+    "Base_Path0_mod0_back",
+    "Base_Path0_mod0_left",
+    "Base_Path0_mod0_right",
+    "Base_Path0_mod0_bottom",
+    "Base_Path0_mod0_drawer_door_divider",
+    "Base_Path0_mod0_door_zone_shelf",
+    "Base_Path0_mod0_drawer_1_door_1_panel0",
+    "Base_Path0_mod1_back",
+    "Base_Path0_mod1_left",
+    "Base_Path0_mod1_right",
+    "Base_Path0_mod1_bottom",
+    "Base_Path0_mod1_top",
+    "Base_Path0_mod1_center_shelf",
+    "Base_Path0_mod1_door_1_panel0",
+    "Base_Path0_mod2_back",
+    "Base_Path0_mod2_left",
+    "Base_Path0_mod2_right",
+    "Base_Path0_mod2_bottom",
+    "Base_Path0_mod2_top",
+    "Base_Path0_mod2_drawer_divider_0",
+    "Base_Path0_mod2_drawer_divider_1",
+    "Base_Path0_mod2_drawers_asym_3_panel0",
+    "Base_Path0_mod2_drawers_asym_3_panel1",
+    "Base_Path0_mod2_drawers_asym_3_panel2",
+    "Base_Path0_mod3_back",
+    "Base_Path0_mod3_left",
+    "Base_Path0_mod3_right",
+    "Base_Path0_mod3_bottom",
+    "Base_Path0_mod3_top",
+    "Base_Path0_mod3_drawer_divider_0",
+    "Base_Path0_mod3_drawers_2_panel0",
+    "Base_Path0_mod3_drawers_2_panel1",
+    "Base_Path1_mod0_back",
+    "Base_Path1_mod0_left",
+    "Base_Path1_mod0_right",
+    "Base_Path1_mod0_bottom",
+    "Base_Path1_mod0_top",
+    "Base_Path1_mod0_shelf1",
+    "Base_Path1_mod0_shelf2",
+    "Custom_Blind_Pantry_0_side_blind_corner_blind_panel",
+    "Toekick_Path",
+    "Base_Path1_mod0_shelf2.004",
+    "Base_Path1_mod0_shelf2.005"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 454300
+  },
+  {
+   "key": "upper",
+   "label": "Upper Cabinets",
+   "hex": "#0000FF",
+   "color_name": "blue",
+   "objects": [
+    "Upper_Path0_mod0_back",
+    "Upper_Path0_mod0_left",
+    "Upper_Path0_mod0_right",
+    "Upper_Path0_mod0_bottom",
+    "Upper_Path0_mod0_top",
+    "Upper_Path0_mod0_center_shelf",
+    "Upper_Path0_mod1_back",
+    "Upper_Path0_mod1_left",
+    "Upper_Path0_mod1_right",
+    "Upper_Path0_mod1_bottom",
+    "Upper_Path0_mod1_top",
+    "Upper_Path0_mod1_shelf1",
+    "Upper_Path0_mod1_shelf2",
+    "Upper_Path0_mod2_back",
+    "Upper_Path0_mod2_left",
+    "Upper_Path0_mod2_right",
+    "Upper_Path0_mod2_bottom",
+    "Upper_Path0_mod2_top",
+    "Upper_Path0_mod2_center_shelf",
+    "Upper_Path0_mod2_upper_door_2_panel0",
+    "Upper_Path0_mod2_upper_door_2_panel1"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 361586
+  },
+  {
+   "key": "transom",
+   "label": "Transom Cabinets",
+   "hex": "#EDFF00",
+   "color_name": "yellow",
+   "objects": [
+    "Custom_Corner_Blind_Transom_0_strip0_corner_blind_panel",
+    "Transom_Path0_mod0_back",
+    "Transom_Path0_mod0_left",
+    "Transom_Path0_mod0_right",
+    "Transom_Path0_mod0_bottom",
+    "Transom_Path0_mod0_top",
+    "Transom_Path0_mod0_transom_lift_1_panel0",
+    "Transom_Path0_mod1_back",
+    "Transom_Path0_mod1_left",
+    "Transom_Path0_mod1_right",
+    "Transom_Path0_mod1_bottom",
+    "Transom_Path0_mod1_top",
+    "Transom_Path0_mod1_transom_lift_1_panel0",
+    "Transom_Path0_mod2_back",
+    "Transom_Path0_mod2_left",
+    "Transom_Path0_mod2_right",
+    "Transom_Path0_mod2_bottom",
+    "Transom_Path0_mod2_top",
+    "Transom_Path0_mod2_transom_lift_1_panel0"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 204163
+  },
+  {
+   "key": "terminal",
+   "label": "Terminal & Corner Pantry Cabinets",
+   "hex": "#FFC000",
+   "color_name": "gold",
+   "objects": [
+    "Custom_Blind_Pantry_0_carcass",
+    "Custom_Blind_Pantry_0_L_shelves",
+    "Custom_Blind_Pantry_0_side_blind_corner_gap_back",
+    "Custom_Blind_Pantry_0_side_blind_corner_gap_bottom",
+    "Custom_Blind_Pantry_0_door_1_leaf",
+    "Custom_Blind_Pantry_0_upper_door_1_leaf",
+    "Custom_Blind_Pantry_0_solid_face",
+    "Custom_Corner_Blind_Transom_0_strip1_corner_gap_back",
+    "Custom_Corner_Blind_Transom_0_strip1_corner_gap_bottom",
+    "Custom_Corner_Blind_Transom_0_strip1_corner_gap_top",
+    "Custom_Corner_Blind_Transom_0_strip1_corner_blind_panel",
+    "Custom_Corner_Blind_Transom_0_strip0_corner_gap_back",
+    "Custom_Corner_Blind_Transom_0_strip0_corner_gap_bottom",
+    "Custom_Corner_Blind_Transom_0_strip0_corner_gap_top",
+    "Custom_Corner_Blind_Transom_0_corner_block_carcass",
+    "Transom_Pantry0_back",
+    "Transom_Pantry0_left",
+    "Transom_Pantry0_bottom",
+    "Transom_Pantry0_top",
+    "Transom_Pantry0_transom_lift_1_panel0",
+    "Custom_Blind_Pantry_0_door_1_leaf.003",
+    "Custom_Blind_Pantry_0_upper_door_1_leaf.003",
+    "Custom_Blind_Pantry_0_solid_face.003"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 158124
+  },
+  {
+   "key": "counter",
+   "label": "Main Kitchen Countertop & Backsplash",
+   "hex": "#00FFFF",
+   "color_name": "cyan",
+   "objects": [
+    "Countertop_Path",
+    "Backsplash 03"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 238128
+  },
+  {
+   "key": "hw",
+   "label": "Cabinet Hardware",
+   "hex": "#FF00FF",
+   "color_name": "magenta",
+   "objects": [
+    "Base_Path0_mod0_drawer_1_door_1_panel0_handle",
+    "Base_Path0_mod1_door_1_panel0_handle",
+    "Base_Path0_mod2_drawers_asym_3_panel0_handle",
+    "Base_Path0_mod2_drawers_asym_3_panel1_handle",
+    "Base_Path0_mod2_drawers_asym_3_panel2_handle",
+    "Base_Path0_mod3_drawers_2_panel0_handle",
+    "Base_Path0_mod3_drawers_2_panel1_handle",
+    "Upper_Path0_mod2_upper_door_2_panel0_handle",
+    "Upper_Path0_mod2_upper_door_2_panel1_handle",
+    "Transom_Pantry0_transom_lift_1_panel0_handle",
+    "Transom_Path0_mod0_transom_lift_1_panel0_handle",
+    "Transom_Path0_mod1_transom_lift_1_panel0_handle",
+    "Transom_Path0_mod2_transom_lift_1_panel0_handle",
+    "Custom_Blind_Pantry_0_upper_door_1_leaf_handle.004",
+    "Custom_Blind_Pantry_0_upper_door_1_leaf_handle.005",
+    "Custom_Blind_Pantry_0_upper_door_1_leaf_handle.006",
+    "Custom_Blind_Pantry_0_upper_door_1_leaf_handle.007"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 5824
+  },
+  {
+   "key": "wall",
+   "label": "Wall Surface",
+   "hex": "#808080",
+   "color_name": "mid grey",
+   "objects": [
+    "Walls 03"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 87877
+  },
+  {
+   "key": "glass",
+   "label": "Glass-Display Cabinets",
+   "hex": "#FF0080",
+   "color_name": "rose",
+   "objects": [
+    "Upper_Path0_mod0_upper_door_glass_1_panel0_frame_left",
+    "Upper_Path0_mod0_upper_door_glass_1_panel0_frame_right",
+    "Upper_Path0_mod0_upper_door_glass_1_panel0_frame_bottom",
+    "Upper_Path0_mod0_upper_door_glass_1_panel0_frame_top",
+    "Upper_Path0_mod0_upper_door_glass_1_panel0_handle"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 7760
+  },
+  {
+   "key": "floor",
+   "label": "Flooring",
+   "hex": "#804000",
+   "color_name": "brown",
+   "objects": [
+    "Floor 03"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 53027
+  },
+  {
+   "key": "plumb",
+   "label": "Plumbing Fixtures",
+   "hex": "#00FF80",
+   "color_name": "spring green",
+   "objects": [
+    "NurbsPath.001",
+    "Base_Path0_mod2_drawers_2_doors_2_panel2.003"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 45363
+  },
+  {
+   "key": "door",
+   "label": "Steel Doors",
+   "hex": "#4040FF",
+   "color_name": "indigo",
+   "objects": [
+    "Steel_Opening_Baked.03",
+    "Steel_Opening_Baked glass.03"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 36633
+  },
+  {
+   "key": "spot",
+   "label": "Ceiling Spotlights",
+   "hex": "#FFFF80",
+   "color_name": "pale yellow",
+   "objects": [
+    "Ceiling 03"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 0
+  },
+  {
+   "key": "accent",
+   "label": "Light Accents",
+   "hex": "#80FF00",
+   "color_name": "chartreuse",
+   "objects": [
+    "Light strip accents"
+   ],
+   "custom": false,
+   "in_scene": true,
+   "visible_pixels": 0
+  }
+ ],
+ "absent_components": [
+  {
+   "key": "island",
+   "label": "Island Back Face",
+   "custom": false
+  },
+  {
+   "key": "itop",
+   "label": "Island Countertop",
+   "custom": false
+  },
+  {
+   "key": "pendant",
+   "label": "Pendant Lights",
+   "custom": false
+  }
+ ],
+ "groups": {
+  "Lighting Fixtures": [
+   "spot",
+   "pendant"
+  ]
+ },
+ "unmatched_hex": "#FFFFFF",
+ "outline_hex": "#000000",
+ "unassigned_objects": [
+  "Plane",
+  "Circle"
+ ],
+ "skipped_objects": [],
+ "materials": [
+  {
+   "name": "Backsplash.001",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Black metal",
+   "base_color_linear": [
+    0.0248,
+    0.0248,
+    0.0248
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Black_Steel_Frame",
+   "base_color_linear": [
+    0.035,
+    0.037,
+    0.04
+   ],
+   "roughness": 0.45
+  },
+  {
+   "name": "Cabinets",
+   "base_color_linear": [
+    0.4445,
+    0.7125,
+    1.0
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Ceiling",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Backsplash",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Clear_Glass",
+   "base_color_linear": [
+    0.92,
+    0.96,
+    0.98
+   ],
+   "roughness": 0.0
+  },
+  {
+   "name": "Dark oak",
+   "base_color_linear": [
+    0.0538,
+    0.0538,
+    0.0538
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Dots Stroke"
+  },
+  {
+   "name": "Emission"
+  },
+  {
+   "name": "Floor",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Floor.001",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "glass_panel",
+   "base_color_linear": [
+    0.6732,
+    0.6732,
+    0.6732
+   ],
+   "roughness": 0.0
+  },
+  {
+   "name": "Limewash.001",
+   "base_color_linear": [
+    0.8,
+    0.6969,
+    0.5859
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Steel metal.001",
+   "base_color_linear": [
+    0.5977,
+    0.5977,
+    0.5977
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Walls",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "Walls.001",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "White",
+   "base_color_linear": [
+    0.8,
+    0.8,
+    0.8
+   ],
+   "roughness": 0.5
+  },
+  {
+   "name": "wood",
+   "base_color_linear": [
+    0.5177,
+    0.3565,
+    0.2888
+   ],
+   "roughness": 0.5
+  }
+ ],
+ "verification": {
+  "size": [
+   1350,
+   1350
+  ],
+  "unexpected_pixel_fraction": 0.070955,
+  "colours_found": {
+   "#FF0000": 454300,
+   "#0000FF": 361586,
+   "#00FFFF": 238128,
+   "#EDFF00": 204163,
+   "#FFC000": 158124,
+   "#808080": 87877,
+   "#804000": 53027,
+   "#00FF80": 45363,
+   "#4040FF": 36633,
+   "#000000": 32815,
+   "#FF0080": 7760,
+   "#FFFFFF": 7584,
+   "#FF00FF": 5824,
+   "#3E3EFA": 2505,
+   "#000031": 2139,
+   "#FB0000": 2085,
+   "#002222": 1936,
+   "#000022": 1654,
+   "#F2B600": 1619,
+   "#694D00": 1597,
+   "#3D3DF4": 1434,
+   "#5D0000": 1406,
+   "#050531": 1333,
+   "#08083D": 1329,
+   "#2A2AB3": 1316,
+   "#222298": 1310,
+   "#2F2FC3": 1307,
+   "#1D1D85": 1305,
+   "#0D0D4F": 1298,
+   "#3838E5": 1279,
+   "#3A3AEB": 1277,
+   "#0000B1": 1274,
+   "#16166E": 1273,
+   "#3333D4": 1258,
+   "#3F3FFB": 1258,
+   "#3D2C00": 1249,
+   "#A50000": 1233,
+   "#7F3F00": 1227,
+   "#4F2500": 1225,
+   "#636363": 1221
+  },
+  "pixels_by_component": {
+   "base": 454300,
+   "upper": 361586,
+   "transom": 204163,
+   "terminal": 158124,
+   "counter": 238128,
+   "hw": 5824,
+   "wall": 87877,
+   "glass": 7760,
+   "floor": 53027,
+   "plumb": 45363,
+   "door": 36633,
+   "spot": 0,
+   "accent": 0
+  },
+  "outline_pixels": 32815
+ }
+}
