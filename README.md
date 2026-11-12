@@ -87,9 +87,7 @@ Any-Kitchen-Prompt-Generator/
 ├── Flooring Patterns Wood/               # 8 wood laying patterns
 ├── Grain & cut/                          # 9 grain / cut swatches
 ├── Wood Species/                         # 18 wood species swatches
-├── screenshot-prompt.png                 # Prompt Generator view
-├── screenshot-image-lab.png              # Image Lab (mask eyedropper) view
-└── screenshot-tags.png                   # Tag Management view
+└── screenshots/                          # 10 screenshots
 ```
 
 | Item | Purpose |
