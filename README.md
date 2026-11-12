@@ -158,9 +158,20 @@ The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tes
 
 ![Image Lab: mask eyedropper with a sample mask](screenshot-image-lab.png)
 
-*Image Lab, step 1 (mask eyedropper): a mask is loaded, and clicking a region assigns its colour to the selected component. Components with a colour show their share of the mask and are marked "in prompt". Components without one are "excluded". The mask shown is a simple sample made for this screenshot.*
+*Image Lab, step 1 Manual Component Mapping: a mask is loaded, and clicking a region assigns its colour to the selected component. Components with a colour show their share of the mask and are marked "in prompt". Components without one are "excluded".*
 
 ---
+## TEMPLATE STRUCTURE SETTINGS
+
+Customize the underlying prompt architecture by editing template blocks, reordering sections, and inserting dynamic tags.
+
+![Prompt Structure](screenshot-Prompt structure.jpg)
+
+## Built-in tags
+
+Inject Pre-configured parameters defining professional camera models, optics, cinematic lighting rigs, and rendering engine parameters to anchor the prompt's visual quality.
+
+![Built-in tags](screenshot-Built-in tages.jpg)
 
 ## Tag Management
 
@@ -183,6 +194,9 @@ Notes:
 ---
 
 ## Material Matrix
+
+![Marble list](screenshot-Marble list.jpg)
+![Wood list](screenshot-Wood species.jpg)
 
 | Area | Options |
 |---|---|
