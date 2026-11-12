@@ -157,9 +157,13 @@ The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tes
 
 ![Prompt Generator View](screenshots/screenshot-prompt.png)
 
+![Image Lab: mask eyedropper with a sample mask](screenshots/screenshot-imagelab-json.png)
+
+*Image Lab, step 1: A Blender-generated legend JSON file (such as Kitchen 01_mask.json) is loaded into the Image Lab, automatically parses the scene's color-coding schema and injects the precise HEX color masks into their corresponding architectural components (such as base cabinets, countertops, flooring, and hardware).*
+
 ![Image Lab: mask eyedropper with a sample mask](screenshots/screenshot-image-lab.png)
 
-*Image Lab, step 1 Manual Component Mapping: a mask is loaded, and clicking a region assigns its colour to the selected component. Components with a colour show their share of the mask and are marked "in prompt". Components without one are "excluded".*
+*Image Lab, step 1 Manual Component Mapping(Without JSON): A (mask.png) is loaded without a JSON file, clicking a region assigns its colour to the selected component. Components with a colour show their share of the mask and are marked "in prompt". Components without one are "excluded".*
 
 ---
 ## TEMPLATE STRUCTURE SETTINGS
@@ -196,6 +200,8 @@ Notes:
 ---
 
 ## Material Matrix
+
+Selecting any material from the list—along with its finish type, grain, cut, surface pigment, and pigment colors—automatically injects its complete physical specification into the corresponding component slot of the prompt, paired with its assigned mask color.
 
 ![Marble list](screenshots/screenshot-Marble-list.png)
 ![Wood list](screenshots/screenshot-Wood-species.png)
