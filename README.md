@@ -138,7 +138,7 @@ cd Any-Kitchen-Prompt-Generator
    - `<blendname>_mask.json`: the legend (schema 3)
 5. The add-on locks render settings during export (Workbench engine, flat shading, no anti-aliasing, Standard view transform) and restores your original settings afterwards. Component colours are kept visibly distinct from one another using CIEDE2000 (ΔE ≥ 5).
 
-![Blender addon](screenshot-Blender-mask.png)
+![Blender addon](screenshots/screenshot-Blender-mask.png)
 ---
 
 ## Using the Prompt Generator
@@ -155,9 +155,9 @@ cd Any-Kitchen-Prompt-Generator
 
 The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tests** and **Config & Log**. The last one provides **Export JSON** / **Import** of your full configuration and a run log.
 
-![Prompt Generator View](screenshot-prompt.png)
+![Prompt Generator View](screenshots/screenshot-prompt.png)
 
-![Image Lab: mask eyedropper with a sample mask](screenshot-image-lab.png)
+![Image Lab: mask eyedropper with a sample mask](screenshots/screenshot-image-lab.png)
 
 *Image Lab, step 1 Manual Component Mapping: a mask is loaded, and clicking a region assigns its colour to the selected component. Components with a colour show their share of the mask and are marked "in prompt". Components without one are "excluded".*
 
@@ -166,17 +166,17 @@ The app has five tabs: **Prompt**, **Image Lab**, **Rules & Colour**, **Self-tes
 
 Customize the underlying prompt architecture by editing template blocks, reordering sections, and inserting dynamic tags.
 
-![Prompt Structure](screenshot-Prompt-structure.png)
+![Prompt Structure](screenshots/screenshot-Prompt-structure.png)
 
 ## Built-in tags
 
 Inject Pre-configured parameters defining professional camera models, optics, cinematic lighting rigs, and rendering engine parameters to anchor the prompt's visual quality.
 
-![Built-in tags](screenshot-Built-in-tages.png)
+![Built-in tags](screenshots/screenshot-Built-in-tages.png)
 
 ## Tag Management
 
-![Tag Management View](screenshot-tags.png)
+![Tag Management View](screenshots/screenshot-tags.png)
 
 | Action | How |
 |---|---|
@@ -196,8 +196,8 @@ Notes:
 
 ## Material Matrix
 
-![Marble list](screenshot-Marble-list.png)
-![Wood list](screenshot-Wood-species.png)
+![Marble list](screenshots/screenshot-Marble-list.png)
+![Wood list](screenshots/screenshot-Wood-species.png)
 
 | Area | Options |
 |---|---|
