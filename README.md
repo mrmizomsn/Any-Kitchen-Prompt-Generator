@@ -222,7 +222,7 @@ Selecting any material from the list—along with its finish type, grain, cut, s
 
 | Area | Options |
 |---|---|
-| Countertop stone | 54 stones: White & Calacatta (14), Black & Charcoal (7), Grey & Silver (8), Beige, Cream & Brown (7), Exotic & Colored (18); includes **Arabescato Breccia** and **Fantastico Arni** |
+| Countertop stone | 57 stones: White & Calacatta (14), Black & Charcoal (9), Grey & Silver (9), Beige, Cream & Brown (7), Exotic & Colored (18); includes **Arabescato Breccia** and **Fantastico Arni** |
 | Wood species | Domestic hardwoods (8), softwoods (4), luxury exotic hardwoods (6) |
 | Grain and cut | Straight grain, flat-sawn, rift-sawn, quarter-sawn, book-matched, slip-matched, chevron, herringbone, end-grain block |
 | Flooring | Wood or stone; 8 wood patterns, 12 stone patterns; 9 stone finishes |
