@@ -39,9 +39,9 @@
  },
  "ap": {
   "door": "Penthouse Terrace: Through the existing floor-to-ceiling multi-panel sliding doors, reveal an ultra-exclusive, high-floor Sleek Ultra-Minimalist Penthouse Terrace overlooking a blurred, distant modern city skyline. The expansive terrace features premium, seamless large-format light gray concrete tile pavers and an elegant glass balustrade structural railing that keeps the view completely unobstructed. A long, architectural low-profile charcoal outdoor dining table is arranged cleanly on the deck, surrounded by a few structural, minimalist green architectural plants in low concrete troughs. Match the terrace light to [LIGHTING_MODE], casting soft, clean high-key sky exposure and linear shadows inward across the floor.",
-  "upper": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Open Shelving Upper Cabinets: Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, curated and styled naturally on the shelves. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of each shelf to illuminate the open shelving interiors.",
   "terminal": "(The upper transom cabinets above the pantry are finished in the exact matching color and material)",
-  "glass": "Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, arranged naturally inside. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets."
+  "glass": "Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, arranged naturally inside. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets.",
+  "upper": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Open Shelving Upper Cabinets: Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, curated and styled naturally on the shelves. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of each shelf to illuminate the open shelving interiors."
  },
  "tg": {
   "upper": [
@@ -56,6 +56,13 @@
     "id": "tmwdteo3vrhrvs",
     "l": "Transom cabinets",
     "t": "(The upper transom cabinets above the pantry are finished in the exact matching color and material)"
+   }
+  ],
+  "glass": [
+   {
+    "id": "tmweuwvlqr0p8g",
+    "l": "Shelving Accessories & LEDs",
+    "t": "Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, arranged naturally inside. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets."
    }
   ],
   "counter": [
@@ -102,13 +109,6 @@
     "id": "tmwcbtnw30qjca",
     "l": "ceramic grid",
     "t": "Featuring clean, matte-white square ceramic grid tiles with dark, contrasting charcoal grout lines."
-   }
-  ],
-  "glass": [
-   {
-    "id": "tmweuwvlqr0p8g",
-    "l": "Shelving Accessories & LEDs",
-    "t": "Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, arranged naturally inside. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets."
    }
   ]
  },

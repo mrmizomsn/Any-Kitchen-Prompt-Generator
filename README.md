@@ -78,7 +78,7 @@ Rendered-output checker (ΔE2000) to verify colours in the result
 
 ```text
 Any-Kitchen-Prompt-Generator/
-├── kitchen_prompt_generator V3.27.html   # Main interactive web application
+├── kitchen_prompt_generator V3.28.html   # Main interactive web application
 ├── Any_kitchen_masks_V3.py               # Blender add-on: mask export + JSON legend
 ├── setup_all_swatches 3.21.py            # Automation script for material swatch setup
 ├── Countertop Materials/                 # 57 stone swatches
