@@ -142,7 +142,7 @@ cd Any-Kitchen-Prompt-Generator
 
 `Any_kitchen_masks_V3.py is a Blender Python utility script designed to export scene masks as flat colors along with a corresponding JSON file, ready for seamless import into the kitchen Prompt web application.
 
-1. 1. In Blender: Open **`Any_kitchen_masks_V3.py`** inside the Text Editor and click **Run Script** 
+1. In Blender: Open **`Any_kitchen_masks_V3.py`** inside the Text Editor and click **Run Script** 
 2. Open the panel: **3D Viewport → Sidebar (N) → Any Kitchen Mask**.
 3. Assign objects to components (16 built-in components such as Base Cabinets, Upper Cabinets, Countertop, Hardware, Flooring and Lighting). Objects are matched automatically by name patterns, and you can override the assignment manually. You can also add **custom components**, edit display names (internal keys never change), and use **Mask All Scene** to register components hidden behind other geometry.
 4. Save your `.blend` file, then **export**. The add-on writes, next to the saved `.blend`:
