@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-setup_all_swatches 3.21.py  -  Kitchen Prompt Generator V3.21 swatch environment setup
+setup_all_swatches 3.28.py  -  Kitchen Prompt Generator V3.28 swatch environment setup
 =============================================================================
 Double-click this file (or run `python setup_all_swatches.py`) from the folder
-that contains kitchen_prompt_generator V3.21.html.
+that contains kitchen_prompt_generator V3.28.html.
 
 What it does
 ------------
@@ -19,10 +19,10 @@ What it does
 
 Source of the filename matrix
 -----------------------------
-Parsed from the V3.21 dashboard (swatchList()/DDM/swPath()): the dashboard
+Parsed from the V3.28 dashboard (swatchList()/DDM/swPath()): the dashboard
 requests ./<folder>/<option value>.jpg for every selectable option
 (group headers are not options). Expected totals, identical to the
-dashboard's own built-in self-test: 18 / 9 / 54 / 49 / 8 / 12 = 150 files.
+dashboard's own built-in self-test: 18 / 9 / 57 / 49 / 8 / 12 = 153 files.
 The dashboard's "Flooring Materials" folder serves BOTH the flooring-species
 dropdown (18 woods) and the flooring-stone dropdown (31 stones) = 49 files.
 """
@@ -99,6 +99,8 @@ COUNTERTOP = [
         'Black Dune',
         'Blue Violet Black',
         'Saint Laurent Black',
+        'Blue Pearl Granite',
+        'Black Basalt',
         'Pietra Grey',
         'Bardiglio Nuvolato',
         'Invisible Grey',
@@ -107,6 +109,7 @@ COUNTERTOP = [
         'Unfilled Silver Travertine',
         'Pacific Grey',
         'Picasso Grey',
+        'Grey Basalt',
         'Crema Marfil',
         'Emperador Dark',
         'Breccia Oniciata',
@@ -213,7 +216,7 @@ SWATCH_MATRIX = {
 EXPECTED_COUNTS = {
     "Wood Species": 18,
     "Grain & cut": 9,
-    "Countertop Materials": 54,
+    "Countertop Materials": 57,
     "Flooring Materials": 49,
     "Flooring Patterns Wood": 8,
     "Flooring Patterns Stone": 12,
@@ -339,7 +342,7 @@ def main():
         pass
 
     print("=" * 64)
-    print(" Kitchen Prompt Generator V3.21 - swatch environment setup")
+    print(" Kitchen Prompt Generator V3.28 - swatch environment setup")
     print("=" * 64)
     print(f" Target directory: {base}")
     print()
@@ -358,9 +361,9 @@ def main():
         "errors": [], "warnings": [],
     }
 
-    if not (base / "kitchen_prompt_generator V3.21.html").exists():
+    if not (base / "kitchen_prompt_generator V3.28.html").exists():
         report["warnings"].append(
-            "kitchen_prompt_generator V3.21.html is not in this folder. "
+            "kitchen_prompt_generator V3.28.html is not in this folder. "
             "Move this script next to the dashboard (or move the folders afterwards)."
         )
 
@@ -408,7 +411,7 @@ def main():
     print(f" Placeholders    : {total_new} written")
     print(f" Existing files  : {total_kept} found and left untouched (never overwritten)")
     print(f" Failures        : {total_fail}")
-    print(f" Matrix size     : {total_all} swatches (expected 150)")
+    print(f" Matrix size     : {total_all} swatches (expected 153)")
     print("-" * 64)
     kept_all = report.get("kept_names", {})
     if any(kept_all.values()):
