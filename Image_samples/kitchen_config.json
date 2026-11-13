@@ -6,7 +6,7 @@
  "gt": "1. Cabinet Hardware: Replace the existing brief cabinet handles located in the magenta (#FF00FF) regions with an elongated, contemporary version configured as premium longer linear Square-bar Pulls handles.\n2. Sleek Ultra-Minimalist Penthouse Terrace: Through the existing floor-to-ceiling steel door, reveal an ultra-exclusive, high-floor Sleek Ultra-Minimalist Penthouse Terrace overlooking a blurred, distant modern city skyline. The expansive terrace features premium, seamless large-format light gray concrete tile pavers and an elegant glass balustrade structural railing that keeps the view completely unobstructed. A long, architectural low-profile charcoal outdoor dining table is arranged cleanly on the deck, surrounded by a few structural, minimalist green architectural plants in low concrete troughs. Match the terrace light to [LIGHTING_MODE], casting soft, clean high-key sky exposure and linear shadows inward across the floor.\n3. LEFT WALL: Modify the open corner pantry door on the left by mounting slim, built-in storage shelves directly onto its interior side, cleanly stocked with spice jars, small condiment bottles, and oils.\n",
  "asp": "21:9",
  "tpl": {
-  "task": "[INPUT ARCHITECTURE]\nYou are provided with two synchronized source reference images in a panoramic 21:9 aspect ratio:\n1. Image 1 (Clay Render): A precise monochrome geometry model mapping spatial depth, ambient occlusion, light-bounce foundations, and black wireframe structural division lines.\n2. Image 2 (Technical Color Mask): A clean, flat-color segment layer using target HEX keys to define material boundaries.\n\n[TASK MISSION]\nSynthesize both layers to perform a photorealistic image-to-image architectural generation pass. Translate this composition into a ultra-high-end interior photograph in the style of Dezeen and ArchDaily. \nThe colors, lines, wireframe vectors, and flat-clay aesthetics exist solely to assign geometry and material boundaries. The final rendered photograph must contain exclusively physical, tactile textures. Completely remove, erase, and overwrite all mask colors, black outlines, wireframes, and synthetic untextured flat-clay surfaces.",
+  "task": "[INPUT ARCHITECTURE]\nYou are provided with (Technical Color Mask): A clean, flat-color segment layer using target HEX keys to define material boundaries in a panoramic {ASPECT} aspect ratio.\n\n[TASK MISSION]\nSynthesize the reference image to perform a photorealistic image-to-image architectural generation pass. Translate this composition into an ultra-high-end interior photograph in the style of Dezeen and ArchDaily. \nThe colors, lines, wireframe vectors, and flat-clay aesthetics exist solely to assign geometry and material boundaries. The final rendered photograph must contain exclusively physical, tactile textures. Completely remove, erase, and overwrite all mask colors, black outlines, wireframes, and synthetic untextured flat-clay surfaces.",
   "cam": "\nCamera & Rendering Specifications: The style of the image, make it look like shot during (Sunlit Afternoon) on a Fujifilm X100V, 23mm f/2 lens, Classic Negative film simulation; introducing hard, documentary-style contrast with rich, deeply saturated ochres, warm wood tones, and cool, cyan-tinted shadow spaces; emulating classic Superia organic film grain matrix structures with a distinct nostalgic tonal shift.",
   "rules": "[CRITICAL REMOVAL BOUNDS]\nWhen reading the mask, identify regions by their targeted HEX code, including minor near-match color variations that fall within a close range of the specified values. If any hex code becomes distorted or confusing, cross-reference and verify the region by its corresponding color name listed in the map below; prioritize whichever identifier correctly resolves the layout boundary to ensure flawless surface mapping, and apply only the photographic finishes listed under the final design specifications to those corresponding regions.\n\n- Isolate layout boundaries cleanly using the multi-layer target identifiers below. The hex codes designate exact mask fields:\n",
   "intro": "- TACTILE FINISH & ARCHITECTURAL SURFACE SPECIFICATIONS\nExecute each material with pristine surface clarity. Maintain accurate physical scale and material roughness transitions:",
@@ -34,15 +34,37 @@
   "counter": "Main Kitchen Countertop & backsplash",
   "transom": "Transom Cabinets (Above upper cabinets on the back wall)",
   "upper": "Upper Cabinets & the cabinets directly above them on the rear wall",
-  "wall": "Wall Surface finish (right side)"
+  "wall": "Wall Surface finish (right side)",
+  "glass": "Framed Glass Upper Cabinets"
  },
  "ap": {
   "door": "Penthouse Terrace: Through the existing floor-to-ceiling multi-panel sliding doors, reveal an ultra-exclusive, high-floor Sleek Ultra-Minimalist Penthouse Terrace overlooking a blurred, distant modern city skyline. The expansive terrace features premium, seamless large-format light gray concrete tile pavers and an elegant glass balustrade structural railing that keeps the view completely unobstructed. A long, architectural low-profile charcoal outdoor dining table is arranged cleanly on the deck, surrounded by a few structural, minimalist green architectural plants in low concrete troughs. Match the terrace light to [LIGHTING_MODE], casting soft, clean high-key sky exposure and linear shadows inward across the floor.",
-  "counter": "(Add only 3–5 realistic accessories, chosen from clear grain jars, ceramic plates or bowls, a rustic cutting board, a stainless-steel espresso maker, a copper kettle, a small herb pot, a metal pepper mill, and an open cookbook. Place them only on genuinely available counter space)",
-  "upper": ". Add only 3–5 realistic accessories, chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections inside the upper cabinets with glass door, and the upper open shelving cabinets. Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets, and open shelving upper cabinets.",
-  "terminal": "(The upper transom cabinets above the pantry are finished in the exact matching color and material)"
+  "upper": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Open Shelving Upper Cabinets: Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, curated and styled naturally on the shelves. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of each shelf to illuminate the open shelving interiors.",
+  "terminal": "(The upper transom cabinets above the pantry are finished in the exact matching color and material)",
+  "glass": "Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, arranged naturally inside. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets."
  },
  "tg": {
+  "upper": [
+   {
+    "id": "tmwdsqpnjwonbt",
+    "l": "Shelving Accessories & LEDs",
+    "t": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Open Shelving Upper Cabinets: Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, curated and styled naturally on the shelves. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of each shelf to illuminate the open shelving interiors."
+   }
+  ],
+  "terminal": [
+   {
+    "id": "tmwdteo3vrhrvs",
+    "l": "Transom cabinets",
+    "t": "(The upper transom cabinets above the pantry are finished in the exact matching color and material)"
+   }
+  ],
+  "counter": [
+   {
+    "id": "tmwdsoy4nem3iv",
+    "l": "Accessories",
+    "t": "(Add only 3–5 realistic accessories, chosen from clear grain jars, ceramic plates or bowls, a rustic cutting board, a stainless-steel espresso maker, a copper kettle, a small herb pot, a metal pepper mill, and an open cookbook. Place them only on genuinely available counter space)"
+   }
+  ],
   "door": [
    {
     "id": "tmwbck3ix5pmlb",
@@ -82,25 +104,11 @@
     "t": "Featuring clean, matte-white square ceramic grid tiles with dark, contrasting charcoal grout lines."
    }
   ],
-  "counter": [
+  "glass": [
    {
-    "id": "tmwdsoy4nem3iv",
-    "l": "Accessories",
-    "t": "(Add only 3–5 realistic accessories, chosen from clear grain jars, ceramic plates or bowls, a rustic cutting board, a stainless-steel espresso maker, a copper kettle, a small herb pot, a metal pepper mill, and an open cookbook. Place them only on genuinely available counter space)"
-   }
-  ],
-  "upper": [
-   {
-    "id": "tmwdsqpnjwonbt",
-    "l": "Accessories & LED light",
-    "t": ". Add only 3–5 realistic accessories, chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections inside the upper cabinets with glass door, and the upper open shelving cabinets. Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets, and open shelving upper cabinets."
-   }
-  ],
-  "terminal": [
-   {
-    "id": "tmwdteo3vrhrvs",
-    "l": "Transom cabinets",
-    "t": "(The upper transom cabinets above the pantry are finished in the exact matching color and material)"
+    "id": "tmweuwvlqr0p8g",
+    "l": "Shelving Accessories & LEDs",
+    "t": "Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, arranged naturally inside. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets."
    }
   ]
  },
@@ -110,6 +118,11 @@
     "id": "tmwcf800o2hp1b",
     "l": "Two Images",
     "t": "[INPUT ARCHITECTURE]\nYou are provided with two synchronized source reference images in a panoramic 21:9 aspect ratio:\n1. Image 1 (Clay Render): A precise monochrome geometry model mapping spatial depth, ambient occlusion, light-bounce foundations, and black wireframe structural division lines.\n2. Image 2 (Technical Color Mask): A clean, flat-color segment layer using target HEX keys to define material boundaries.\n\n[TASK MISSION]\nSynthesize both layers to perform a photorealistic image-to-image architectural generation pass. Translate this composition into a ultra-high-end interior photograph in the style of Dezeen and ArchDaily. \nThe colors, lines, wireframe vectors, and flat-clay aesthetics exist solely to assign geometry and material boundaries. The final rendered photograph must contain exclusively physical, tactile textures. Completely remove, erase, and overwrite all mask colors, black outlines, wireframes, and synthetic untextured flat-clay surfaces."
+   },
+   {
+    "id": "tmwevel893v6ku",
+    "l": "One Image.",
+    "t": "[INPUT ARCHITECTURE]\nYou are provided with (Technical Color Mask): A clean, flat-color segment layer using target HEX keys to define material boundaries in a panoramic {ASPECT} aspect ratio.\n\n[TASK MISSION]\nSynthesize the reference image to perform a photorealistic image-to-image architectural generation pass. Translate this composition into an ultra-high-end interior photograph in the style of Dezeen and ArchDaily. \nThe colors, lines, wireframe vectors, and flat-clay aesthetics exist solely to assign geometry and material boundaries. The final rendered photograph must contain exclusively physical, tactile textures. Completely remove, erase, and overwrite all mask colors, black outlines, wireframes, and synthetic untextured flat-clay surfaces."
    }
   ]
  },
@@ -209,8 +222,8 @@
    "hex": "#E3DAC9",
    "bx": "#E3DAC9",
    "st": "Base",
-   "sp": "Genuine Teak",
-   "gr": "Quarter-sawn",
+   "sp": "White Oak",
+   "gr": "Chevron Diagonal",
    "fin": "Satin",
    "stone": "Thassos White",
    "prof": "Flat panel",
@@ -226,7 +239,7 @@
    "pg": "Staining & Dyeing",
    "cov": "Natural Hardwax Oil",
    "stc": "Warm Cherry",
-   "stt": "As is",
+   "stt": "Warmer",
    "pc": "Chalk White",
    "pt": "As is",
    "gc": "Raw Umber",
@@ -402,7 +415,7 @@
    "sp": "White Oak",
    "gr": "Rift-sawn (Linear)",
    "fin": "Polished",
-   "stone": "Calacatta Gold",
+   "stone": "Arabescato Breccia",
    "prof": "Flat panel",
    "hs": "Modern Minimalist",
    "hf": "Brushed Nickel",
@@ -535,7 +548,7 @@
    "pt": "As is",
    "gc": "Raw Umber",
    "ds": [],
-   "fst": "Rosso Verona Marble",
+   "fst": "Calacatta Marble",
    "fsp": "Vein-Cut",
    "ffin": "Honed",
    "pl": "Farmhouse Apron-Front with Bridge Faucet",

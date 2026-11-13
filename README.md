@@ -1,4 +1,4 @@
-# Kitchen Prompt Generator (V3.25)
+# Kitchen Prompt Generator
 
 **An offline, single-file web tool that builds ultra-high-end, photorealistic architectural kitchen-interior prompts for modern generative image AI models.**
 
@@ -63,7 +63,7 @@ Blender scene
 <blendname>_mask.png  +  <blendname>_mask.json   (flat colours + legend)
    │
    ▼
-kitchen_prompt_generator V3.25.html   (Image Lab: load mask / legend)
+kitchen_prompt_generator.html   (Image Lab: load mask / legend)
    │  choose materials, finishes, lighting, camera · tags · rules check
    ▼
 Compiled prompt (Copy prompt)  ──►  Nano Banana  (mask image attached as the reference)
@@ -78,7 +78,7 @@ Rendered-output checker (ΔE2000) to verify colours in the result
 
 ```text
 Any-Kitchen-Prompt-Generator/
-├── kitchen_prompt_generator V3.25.html   # Main interactive web application
+├── kitchen_prompt_generator V3.27.html   # Main interactive web application
 ├── Any_kitchen_masks_V3.py               # Blender add-on: mask export + JSON legend
 ├── setup_all_swatches 3.21.py            # Automation script for material swatch setup
 ├── Countertop Materials/                 # 54 stone swatches
@@ -93,7 +93,7 @@ Any-Kitchen-Prompt-Generator/
 
 | Item | Purpose |
 |---|---|
-| `kitchen_prompt_generator V3.25.html` | The whole app: UI, prompt compiler, rule checks and self-tests in one file. Works offline. |
+| `kitchen_prompt_generator.html` | The whole app: UI, prompt compiler, rule checks and self-tests in one file. Works offline. |
 | `Any_kitchen_masks_V3.py` | A **Blender add-on** (v3.0.0, requires Blender 3.6+) that assigns scene objects to kitchen components and exports a flat-colour mask PNG and a JSON legend. |
 | `setup_all_swatches 3.21.py` | Swatch setup automation. *TODO: describe its inputs and outputs once documented from the source.* |
 | Asset folders | Swatch images the app refers to by folder and name. The app reports the expected path of each swatch (150 in total: 54 / 49 / 12 / 8 / 9 / 18). |
@@ -118,7 +118,7 @@ cd Any-Kitchen-Prompt-Generator
 
 ### Run the app
 
-1. Open the folder and **double-click `kitchen_prompt_generator V3.25.html`**, or right-click it and choose **Open with → Microsoft Edge** (or Chrome, Firefox, Safari or any other modern browser).
+1. Open the folder and **double-click `kitchen_prompt_generator.html`**, or right-click it and choose **Open with → Microsoft Edge** (or Chrome, Firefox, Safari or any other modern browser).
 2. The page opens with the live prompt on the right and the component panel on the left. You can start immediately.
 
 > **Tip:** keep the asset folders next to the HTML file so swatch paths match.
@@ -130,7 +130,7 @@ cd Any-Kitchen-Prompt-Generator
 
 - Generate the Render: Upload the flat-color mask image as the reference input in your generative AI model, paste the compiled prompt, and generate your photorealistic architectural visualization.
 
-![Mask sample](Image_samples/Kitchen-01_mask-21-9.webp)
+![Mask sample](screenshots/screenshot-Kitchen-01_mask-21-9.webp)
 *Flat-color material mask exported from Blender.*
 
 ![Rendred image](screenshots/screenshot-render01.webp)
@@ -140,9 +140,9 @@ cd Any-Kitchen-Prompt-Generator
 ---
 ## Using the Mask Add-on (Blender)
 
-`Any_kitchen_masks_V3.py` is a Blender add-on, not a stand-alone script.
+`Any_kitchen_masks_V3.py is a Blender Python utility script designed to export scene masks as flat colors along with a corresponding JSON file, ready for seamless import into the kitchen Prompt web application.
 
-1. In Blender: **Edit → Preferences → Add-ons → Install…**, select `Any_kitchen_masks_V3.py`, then enable **Any Kitchen Mask**.
+1. 1. In Blender: Open **`Any_kitchen_masks_V3.py`** inside the Text Editor and click **Run Script** 
 2. Open the panel: **3D Viewport → Sidebar (N) → Any Kitchen Mask**.
 3. Assign objects to components (16 built-in components such as Base Cabinets, Upper Cabinets, Countertop, Hardware, Flooring and Lighting). Objects are matched automatically by name patterns, and you can override the assignment manually. You can also add **custom components**, edit display names (internal keys never change), and use **Mask All Scene** to register components hidden behind other geometry.
 4. Save your `.blend` file, then **export**. The add-on writes, next to the saved `.blend`:
@@ -279,7 +279,7 @@ Image models can drift: walls shift, cabinets gain extra doors, perspective chan
 ---
 
 ## Version Notes
-
+- **V3.27**: Stone descriptions now leave the finish to the selected finish control.
 - **V3.25**: `＋ Tag` moved above each appendix text area, new `clear tag` button, and a regression test for both.
 - **V3.24**: flat, solid colour-coded labels with readable contrast on the dark panel.
 - **V3.23**: mask-colour labels in the prompt preview and panels (display only).
