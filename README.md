@@ -81,7 +81,7 @@ Any-Kitchen-Prompt-Generator/
 ├── kitchen_prompt_generator V3.27.html   # Main interactive web application
 ├── Any_kitchen_masks_V3.py               # Blender add-on: mask export + JSON legend
 ├── setup_all_swatches 3.21.py            # Automation script for material swatch setup
-├── Countertop Materials/                 # 54 stone swatches
+├── Countertop Materials/                 # 57 stone swatches
 ├── Flooring Materials/                   # 49 wood and stone swatches
 ├── Flooring Patterns Stone/              # 12 stone laying patterns
 ├── Flooring Patterns Wood/               # 8 wood laying patterns
