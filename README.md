@@ -78,9 +78,9 @@ Rendered-output checker (ΔE2000) to verify colours in the result
 
 ```text
 Any-Kitchen-Prompt-Generator/
-├── kitchen_prompt_generator V3.28.html   # Main interactive web application
+├── kitchen_prompt_generator V3.29.html   # Main interactive web application
 ├── Any_kitchen_masks_V3.py               # Blender add-on: mask export + JSON legend
-├── setup_all_swatches 3.21.py            # Automation script for material swatch setup
+├── setup_all_swatches 3.28.py            # Automation script for material swatch setup
 ├── Countertop Materials/                 # 57 stone swatches
 ├── Flooring Materials/                   # 49 wood and stone swatches
 ├── Flooring Patterns Stone/              # 12 stone laying patterns
@@ -95,7 +95,7 @@ Any-Kitchen-Prompt-Generator/
 |---|---|
 | `kitchen_prompt_generator.html` | The whole app: UI, prompt compiler, rule checks and self-tests in one file. Works offline. |
 | `Any_kitchen_masks_V3.py` | A **Blender add-on** (v3.0.0, requires Blender 3.6+) that assigns scene objects to kitchen components and exports a flat-colour mask PNG and a JSON legend. |
-| `setup_all_swatches 3.21.py` | Swatch setup automation. *TODO: describe its inputs and outputs once documented from the source.* |
+| `setup_all_swatches 3.28.py` | Swatch setup automation. *TODO: describe its inputs and outputs once documented from the source.* |
 | Asset folders | Swatch images the app refers to by folder and name. The app reports the expected path of each swatch (150 in total: 54 / 49 / 12 / 8 / 9 / 18). |
 
 ---

@@ -43,8 +43,10 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--b)
 .ddph:before,.ddph:after{content:"";position:absolute;width:12px;height:12px;border:2px solid #6aa6ffaa}.ddph:before{top:6px;left:6px;border-right:0;border-bottom:0}.ddph:after{bottom:6px;right:6px;border-left:0;border-top:0}
 .ddph .f{font:11px ui-monospace,Consolas,monospace;color:#8fb8ff;word-break:break-word}.ddph .n{font:600 12px ui-monospace,Consolas,monospace;color:#e8f0ff;word-break:break-word}
 .ddn{margin-top:8px;font-weight:700;font-size:13px;color:#fff;text-align:center;line-height:1.25;word-break:break-word}
+.meta{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:3px;font-size:smaller}.meta a{color:var(--m);text-decoration:none;border-bottom:1px dotted var(--b)}.meta a:hover,.meta a:focus-visible{color:var(--a);border-bottom-color:var(--a)}
 </style></head><body>
-<aside><h1>Kitchen Prompt Generator</h1><small>Target: Gemini / Nano Banana · offline · v3.28</small><div style="margin:10px 0" id="acc"></div>
+<aside><h1>Kitchen Prompt Generator</h1><small>Target: Gemini / Nano Banana · offline · v3.29</small>
+<div class="meta"><a href="https://github.com/mrmizomsn/Any-Kitchen-Prompt-Generator" target="_blank" rel="noopener noreferrer" title="Project repository on GitHub">GitHub project</a><a href="mailto:mr_mizo@msn.com" title="Email the creator">mr_mizo@msn.com</a></div><div style="margin:10px 0" id="acc"></div>
 <small>* names (and neutral hex values) assigned by this tool, not by a source. #6DA79F was merged into #6DA7A6.</small></aside>
 <main>
 <div class="tabs" role="tablist"><button data-tab="prompt" class="on">Prompt</button><button data-tab="lab">Image Lab</button><button data-tab="rules">Rules &amp; Colour</button><button data-tab="tests">Self-tests</button><button data-tab="cfg">Config &amp; Log</button></div>
@@ -828,6 +830,9 @@ return wS(s=>{},()=>{const c=S.c.upper;c.mode='wood';for(const pg of[PGN[0],PGN[
 const fl=S.c.floor;fl.mode='wood';for(const f of FIN.map(x=>x[0]))for(const ds of[[],['Hand Scraping']]){fl.fin=f;fl.ds=ds;const t=refine('floor'),ff=/Semi|High|Satin/.test(f)?f:'Ultra-Matte';if(!need(ff).test(t))bad.push('floor no sheen note '+f+'|'+ds.join());if(deny(ff).test(t.replace(/non-reflective/gi,'')))bad.push('floor conflict '+f+': '+t)}
 const a=withRF(false,()=>compile()),b=withRF(false,()=>compile());return bad.length?bad.length+': '+bad.slice(0,4).join(' // '):a!==b?'Refine off unstable':null})}]];
 TESTS.push(...TESTS28);
+/* V3.29 tests */
+TESTS.push(['V3.29 header: repository link opens in a new tab safely, creator email is a mailto link, both sit under the title; neither leaks into the prompt',()=>{const a=[...document.querySelectorAll('aside .meta a')];if(a.length!=2)return'links '+a.length;const g=a[0],m=a[1];if(g.getAttribute('href')!=='https://github.com/mrmizomsn/Any-Kitchen-Prompt-Generator'||g.target!=='_blank'||g.rel!=='noopener noreferrer')return'repo link attributes';if(m.getAttribute('href')!=='mailto:mr_mizo@msn.com'||m.textContent!=='mr_mizo@msn.com'||m.target)return'email link';
+const h=document.querySelector('aside h1');if(!h||h.compareDocumentPosition(g)&Node.DOCUMENT_POSITION_PRECEDING)return'not after the title';return/github\.com|mr_mizo/.test(compile())?'leaked into the prompt':null}]);
 function runT(){TESTING=true;try{runT0()}finally{TESTING=false;syncLabelUI();out()}}
 function runT0(){let ok=0;const h=TESTS.map(([n,f])=>{let r;try{r=f()}catch(e){r='threw: '+e.message}if(!r)ok++;return`<div class="${r?'er':'ok'}">${r?'✗':'✓'} ${H(n)}${r?': '+H(r):''}</div>`});$('#tr').innerHTML=`<b>${ok}/${TESTS.length} passed</b>`+h.join('')}
 $('#rt').onclick=runT;
