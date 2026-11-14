@@ -262,7 +262,7 @@ Image models can drift: walls shift, cabinets gain extra doors, perspective chan
 |---|---|
 | Swatch previews are empty | Keep the six asset folders next to the HTML file and keep their names unchanged |
 | A component is missing from the prompt | It may be below the mask presence threshold, or absent from the legend. Lower the threshold in **Image Lab** |
-| Colours look wrong after exporting a mask | Re-export from Blender. The add-on forces flat, unlit rendering so colours are exact |
+| Colours look wrong after exporting a mask | Only use the _mask.png file automatically exported next to your .blend project file—do not use viewport screenshots or manually save renders unless Blender is using the Workbench render engine. |
 | `clear tag` shows "No tag is selected" | The field's text no longer matches a saved tag (it was typed or edited by hand), so nothing is erased |
 | Settings vanished | Browser data was cleared or you opened the file in another browser. Import your exported JSON |
 | Self-tests show a failure | Re-download the HTML file. Please open an issue and attach the failing test name |
@@ -270,6 +270,7 @@ Image models can drift: walls shift, cabinets gain extra doors, perspective chan
 ---
 
 ## Version Notes
+- **V3.29**: Eliminated all contradictory finish phrases across all cabinet and floor material prompt texts.
 - **V3.27**: Stone descriptions now leave the finish to the selected finish control.
 - **V3.25**: `＋ Tag` moved above each appendix text area, new `clear tag` button, and a regression test for both.
 - **V3.24**: flat, solid colour-coded labels with readable contrast on the dark panel.
