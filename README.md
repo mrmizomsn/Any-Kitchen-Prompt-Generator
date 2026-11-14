@@ -2,7 +2,7 @@
 
 **An offline, single-file web tool that builds ultra-high-end, photorealistic architectural kitchen-interior prompts for modern generative image AI models.**
 
-You give it a flat-colour technical mask of a kitchen (exported from Blender), choose materials, finishes, lighting and camera for every component, and it compiles one precise, copy-ready prompt. Nothing is uploaded anywhere: the app is one HTML file that runs entirely in your browser.
+Feed it a flat-colour kitchen mask (exported via the included Blender script), choose your materials, finishes, lighting, and camera settings for each component, and it compiles a single, copy-ready prompt that maps every surface property to its corresponding mask colour.
 
 <div align="center">
 
@@ -36,22 +36,24 @@ You give it a flat-colour technical mask of a kitchen (exported from Blender), c
 
 ## Key Features
 
-### Tag-Management UI
-- **Quick-access tags** for every component's *Custom Appendix Text*, including custom components, and for every field in *Template Structure Settings*.
-- **`＋ Tag` and `clear tag` buttons** sit together at the top of each appendix text area.
-  - `＋ Tag` saves the current text as a reusable tag.
+### Why This App Exists
+Instead of manually writing and tweaking prompts for every surface in your reference image, the app can build complete, structured prompts in just a few clicks. Simply choose your materials, surface finishes, lighting modes, and camera settings from the built-in library, and the app automatically compiles a ready-to-paste prompt to turn your 3D scene into a photorealistic render—or restyle existing materials—using your preferred AI image generator.
+- **Tag-Management UI** Quick-access tags for every component's *Custom Appendix Text*, and for every field in *Template Structure Settings*. (see [Built-in tags](#built-in-tags)). 
+
+  - **`＋ Tag` and `clear tag` buttons** sit together at the top of each appendix text area.
+  - `＋ Tag` saves the current text as a reusable tag, expanding your prompt library for one-click reuse.
   - `clear tag` erases the text inserted from the selected tag and removes the tag's highlight.
-- Tags can be inserted with one click, renamed, edited (the pencil icon, or double-click) and deleted. Inserting a tag keeps a one-step **undo** of the replaced text.
-- Responsive layout: the text area uses the full panel width and the buttons sit above it.
+  - Tags can be inserted with one click, renamed, edited (the pencil icon, or double-click) and deleted. Inserting a tag keeps a one-step **undo** of the replaced text.
 
 ### Mask-Reference Processing
-- Works from a **flat-colour technical mask** with black wireframe outlines, produced by the included Blender add-on.
+- Works from a **flat-colour mask** with black wireframe outlines, produced by the included Blender add-on. (see [Render Samples](#Render-Samples)). 
+
 - The **Image Lab** tab lets you upload the mask, click a region to assign its colour to a component (mask eyedropper), or import the add-on's **JSON legend** so colours, names and custom components are filled in automatically.
 - A **presence threshold** (default 0.01 % of mask pixels) decides which components exist in the mask, so absent components never appear in the prompt.
-- A **rendered-output checker** compares the colour of a region in the AI-generated image with its target using CIEDE2000 (ΔE2000, default pass threshold ≤ 6).
+- A **rendered-output checker** compares the colour of a region in the AI-generated image with its target.
 
-### Precision Material Matrix
-- **54 countertop stones** in five groups, each with a descriptive phrase, e.g. Arabescato Breccia and Fantastico Arni.
+### Prompt Library & Materials Matrix
+- **57 countertop stones** in five groups, each with a descriptive phrase, e.g. Arabescato Breccia and Fantastico Arni.
 - **18 wood species** in three groups, with **9 grain-and-cut options**.
 - **Flooring** in wood or stone, with 8 wood patterns, 12 stone patterns and a 9-option stone finish list (Polished, Honed, Leathered, Brushed, Tumbled, Acid-Washed, Bush-Hammered, Flamed, Sandblasted). Flooring stone includes Black Basalt (see the note under [Material Matrix](#material-matrix)).
 - **Hardware**: five handle styles plus finish selection; glass-cabinet handles, pendant materials, steel-door finishes and LED accent colour temperatures each have their own menus.
@@ -60,7 +62,7 @@ You give it a flat-colour technical mask of a kitchen (exported from Blender), c
 ### Geometric Anchoring
 - Every prompt carries a **LOCKED GEOMETRY** block that forbids changing camera position, perspective, crop, aspect ratio, room dimensions, cabinet layout, panel divisions, handle and shelf positions, or object placement.
 - An optional **Geometry Exception** lets you state, in your own words, a change you do want. It is injected exactly as typed, and only while its checkbox is ticked.
-- See [Geometric Anchoring](#geometric-anchoring) for details.
+
 
 ---
 
@@ -79,27 +81,13 @@ flowchart TD
 
 ## Repository Structure
 
-```text
-Any-Kitchen-Prompt-Generator/
-├── kitchen_prompt_generator V3.29.html   # Main interactive web application
-├── Any_kitchen_masks_V3.py               # Blender add-on: mask export + JSON legend
-├── setup_all_swatches 3.28.py            # Automation script for material swatch setup
-├── Countertop Materials/                 # 57 stone swatches
-├── Flooring Materials/                   # 49 wood and stone swatches
-├── Flooring Patterns Stone/              # 12 stone laying patterns
-├── Flooring Patterns Wood/               # 8 wood laying patterns
-├── Grain & cut/                          # 9 grain / cut swatches
-├── Wood Species/                         # 18 wood species swatches
-├── Image samples/                        # JOSN file + refrence image mask
-└── screenshots/                          # 10 screenshots
-```
+
 
 | Item | Purpose |
 |---|---|
-| `kitchen_prompt_generator.html` | The whole app: UI, prompt compiler, rule checks and self-tests in one file. Works offline. |
-| `Any_kitchen_masks_V3.py` | A **Blender add-on** (v3.0.0, requires Blender 3.6+) that assigns scene objects to kitchen components and exports a flat-colour mask PNG and a JSON legend. |
-| `setup_all_swatches 3.28.py` | Swatch setup automation. *TODO: describe its inputs and outputs once documented from the source.* |
-| Asset folders | Swatch images the app refers to by folder and name. The app reports the expected path of each swatch (150 in total: 54 / 49 / 12 / 8 / 9 / 18). |
+| `kitchen_prompt_generator.html` | The whole app: UI, prompt compiler. Works offline. |
+| `Any_kitchen_masks_V3.py` | A **Blender add-on** (v3.0.0, requires Blender 3.6+) Assigns mask colors to scene objects by kitchen component and exports a flat-colour mask PNG alongside a JSON file mapping each assigned color to its component. |
+| Asset folders | Swatch images the app refers to by folder and name. The app reports the expected path of each swatch (153 in total: 57 Countertop Materials / 49 Flooring Materials / 12 Flooring Patterns Stone / 8 Flooring Patterns Wood / 9 Grain & cut / 18 Wood Species). |
 
 ---
 
