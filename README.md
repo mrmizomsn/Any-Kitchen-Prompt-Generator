@@ -270,7 +270,7 @@ Image models can drift: walls shift, cabinets gain extra doors, perspective chan
 ---
 
 ## Version Notes
-- **V3.29**: Eliminated all contradictory finish phrases across all cabinet and floor material prompt texts.
+- **V3.29**: eliminates all contradictory finish phrases across wood cabinet and floor prompt texts, ensuring surface sheen is controlled exclusively by your selected sheen level. Wood floor reflection descriptions now dynamically adapt to your finish tier, and the wood Refine option always preserves sheen notes alongside texture details.
 - **V3.27**: Stone descriptions now leave the finish to the selected finish control.
 - **V3.25**: `＋ Tag` moved above each appendix text area, new `clear tag` button, and a regression test for both.
 - **V3.24**: flat, solid colour-coded labels with readable contrast on the dark panel.
