@@ -66,20 +66,13 @@ You give it a flat-colour technical mask of a kitchen (exported from Blender), c
 
 ## How the Pieces Fit Together
 
-```text
-Blender scene
-   │  Any_kitchen_masks_V3.py (add-on): assign objects → export
-   ▼
-<blendname>_mask.png  +  <blendname>_mask.json   (flat colours + legend)
-   │
-   ▼
-kitchen_prompt_generator.html   (Image Lab: load mask / legend)
-   │  choose materials, finishes, lighting, camera · tags · rules check
-   ▼
-Compiled prompt (Copy prompt)  ──►  Nano Banana  (mask image attached as the reference)
-   │
-   ▼
-Rendered-output checker (ΔE2000) to verify colours in the result
+```mermaid
+flowchart TD
+    A["<b>1. Blender 3D Scene</b><br/>Assign kitchen parts & export via <code>Any_kitchen_masks_V3.py</code>"] 
+    --> B["<b>2. Mask & Json Files</b><br/><code>&lt;scene&gt;_mask.png</code> + <code>&lt;scene&gt;_mask.json </code>"]
+    B --> C["<b>3. Kitchen Prompt Generator</b><br/>Load mask/Json file in Image Lab & configure materials, lighting & camera"]
+    C --> D["<b>4. AI Image Generation (e.g., Nano Banana)</b><br/>Paste compiled prompt + attach <code>_mask.png</code> as reference"]
+    D --> E["<b>5. Color Accuracy Verification</b><br/>Check final render against target mask colors"]
 ```
 
 ---
