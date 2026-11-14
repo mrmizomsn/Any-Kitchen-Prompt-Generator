@@ -3,10 +3,16 @@
 **An offline, single-file web tool that builds ultra-high-end, photorealistic architectural kitchen-interior prompts for modern generative image AI models.**
 
 You give it a flat-colour technical mask of a kitchen (exported from Blender), choose materials, finishes, lighting and camera for every component, and it compiles one precise, copy-ready prompt. Nothing is uploaded anywhere: the app is one HTML file that runs entirely in your browser.
+
+<div align="center">
+
 ![GitHub release](https://img.shields.io/github/v/release/mrmizomsn/Any-Kitchen-Prompt-Generator?color=c07a53)
+![GitHub downloads](https://img.shields.io/github/downloads/mrmizomsn/Any-Kitchen-Prompt-Generator/total?color=c07a53)
 ![GitHub stars](https://img.shields.io/github/stars/mrmizomsn/Any-Kitchen-Prompt-Generator?color=c07a53)
 ![License](https://img.shields.io/github/license/mrmizomsn/Any-Kitchen-Prompt-Generator?color=c07a53)
 ![Blender](https://img.shields.io/badge/Blender-3.6%20%7C%204.x%20%7C%205.0-c07a53)
+
+</div>
 ---
 
 ## Table of Contents
