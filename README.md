@@ -6,7 +6,8 @@ You give it a flat-colour technical mask of a kitchen (exported from Blender), c
 
 <div align="center">
 
-![GitHub release](https://img.shields.io/github/v/release/mrmizomsn/Any-Kitchen-Prompt-Generator?color=c07a53)
+![Version](https://img.shields.io/badge/version-v1.0.0-c07a53)
+![Repo Size](https://img.shields.io/github/repo-size/mrmizomsn/Any-Kitchen-Prompt-Generator?color=c07a53)
 ![GitHub downloads](https://img.shields.io/github/downloads/mrmizomsn/Any-Kitchen-Prompt-Generator/total?color=c07a53)
 ![GitHub stars](https://img.shields.io/github/stars/mrmizomsn/Any-Kitchen-Prompt-Generator?color=c07a53)
 ![License](https://img.shields.io/github/license/mrmizomsn/Any-Kitchen-Prompt-Generator?color=c07a53)
