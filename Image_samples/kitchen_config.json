@@ -4,7 +4,7 @@
  "lm": "Neutral Daylight (default)",
  "ge": false,
  "gt": "1. Cabinet Hardware: Replace the existing brief cabinet handles located in the magenta (#FF00FF) regions with an elongated, contemporary version configured as premium longer linear Square-bar Pulls handles.\n2. Sleek Ultra-Minimalist Penthouse Terrace: Through the existing floor-to-ceiling steel door, reveal an ultra-exclusive, high-floor Sleek Ultra-Minimalist Penthouse Terrace overlooking a blurred, distant modern city skyline. The expansive terrace features premium, seamless large-format light gray concrete tile pavers and an elegant glass balustrade structural railing that keeps the view completely unobstructed. A long, architectural low-profile charcoal outdoor dining table is arranged cleanly on the deck, surrounded by a few structural, minimalist green architectural plants in low concrete troughs. Match the terrace light to [LIGHTING_MODE], casting soft, clean high-key sky exposure and linear shadows inward across the floor.\n3. LEFT WALL: Modify the open corner pantry door on the left by mounting slim, built-in storage shelves directly onto its interior side, cleanly stocked with spice jars, small condiment bottles, and oils.\n",
- "asp": "21:9",
+ "asp": "1:1",
  "tpl": {
   "task": "[INPUT ARCHITECTURE]\nYou are provided with (Technical Color Mask): A clean, flat-color segment layer using target HEX keys to define material boundaries in a panoramic {ASPECT} aspect ratio.\n\n[TASK MISSION]\nSynthesize the reference image to perform a photorealistic image-to-image architectural generation pass. Translate this composition into an ultra-high-end interior photograph in the style of Dezeen and ArchDaily. \nThe colors, lines, wireframe vectors, and flat-clay aesthetics exist solely to assign geometry and material boundaries. The final rendered photograph must contain exclusively physical, tactile textures. Completely remove, erase, and overwrite all mask colors, black outlines, wireframes, and synthetic untextured flat-clay surfaces.",
   "cam": "\nCamera & Rendering Specifications: The style of the image, make it look like shot during (Sunlit Afternoon) on a Fujifilm X100V, 23mm f/2 lens, Classic Negative film simulation; introducing hard, documentary-style contrast with rich, deeply saturated ochres, warm wood tones, and cool, cyan-tinted shadow spaces; emulating classic Superia organic film grain matrix structures with a distinct nostalgic tonal shift.",
@@ -22,7 +22,6 @@
   "floor": "brown",
   "base": "red",
   "cx_9a03e2ea": "dark forest green",
-  "cx_cdf5167c": "dark rose",
   "glass": "rose",
   "plumb": "spring green",
   "door": "indigo"
@@ -35,22 +34,16 @@
   "transom": "Transom Cabinets (Above upper cabinets on the back wall)",
   "upper": "Upper Cabinets & the cabinets directly above them on the rear wall",
   "wall": "Wall Surface finish (right side)",
-  "glass": "Framed Glass Upper Cabinets"
+  "glass": "Framed Glass Upper Cabinets",
+  "cx_9a03e2ea": "Integrated Cabinetry Lighting"
  },
  "ap": {
   "door": "Penthouse Terrace: Through the existing floor-to-ceiling multi-panel sliding doors, reveal an ultra-exclusive, high-floor Sleek Ultra-Minimalist Penthouse Terrace overlooking a blurred, distant modern city skyline. The expansive terrace features premium, seamless large-format light gray concrete tile pavers and an elegant glass balustrade structural railing that keeps the view completely unobstructed. A long, architectural low-profile charcoal outdoor dining table is arranged cleanly on the deck, surrounded by a few structural, minimalist green architectural plants in low concrete troughs. Match the terrace light to [LIGHTING_MODE], casting soft, clean high-key sky exposure and linear shadows inward across the floor.",
   "terminal": "(The upper transom cabinets above the pantry are finished in the exact matching color and material)",
-  "glass": "Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, arranged naturally inside. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of glass-display upper cabinets.",
-  "upper": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Open Shelving Upper Cabinets: Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, curated and styled naturally on the shelves. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of each shelf to illuminate the open shelving interiors."
+  "cx_9a03e2ea": " Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Upper Cabinets (Glass-Display & Open Shelving): Add a seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of both glass-display and open-shelving upper cabinets.",
+  "upper": "(Cabinet & Shelf Accessories: Style 3–5 realistic items from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections naturally on open shelves and inside upper cabinets with glass doors where present.)"
  },
  "tg": {
-  "upper": [
-   {
-    "id": "tmwdsqpnjwonbt",
-    "l": "Shelving Accessories & LEDs",
-    "t": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Open Shelving Upper Cabinets: Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, curated and styled naturally on the shelves. Seamless Warm Amber (2700K) LED strips are integrated directly into the underside of each shelf to illuminate the open shelving interiors."
-   }
-  ],
   "terminal": [
    {
     "id": "tmwdteo3vrhrvs",
@@ -109,6 +102,25 @@
     "id": "tmwcbtnw30qjca",
     "l": "ceramic grid",
     "t": "Featuring clean, matte-white square ceramic grid tiles with dark, contrasting charcoal grout lines."
+   }
+  ],
+  "cx_9a03e2ea": [
+   {
+    "id": "tmwf1e0okawxp7",
+    "l": "LED strips",
+    "t": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Upper Cabinets (Glass-Display & Open Shelving): Add a seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of both glass-display and open-shelving upper cabinets."
+   },
+   {
+    "id": "tmwf1krvffa6ij",
+    "l": "Styling & Cabinetry Lighting",
+    "t": "Add a hidden Warm Amber (2700K) downward-facing LED strips beneath regular upper cabinets, complemented by Soft Warm White (3000K) integrated range hood lighting where presented in the reference. Upper Cabinets (Glass-Display & Open Shelving): Add a seamless Warm Amber (2700K) LED strips are integrated directly into the underside of all shelves to illuminate the interiors of both glass-display and open-shelving upper cabinets.\n• Cabinet & Shelf Accessories: Add 3–5 realistic accessories chosen from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections, curated, styled, and arranged naturally throughout the shelves and interior."
+   }
+  ],
+  "upper": [
+   {
+    "id": "tmwf2n2wpd0dd3",
+    "l": "Cabinet & Shelf Accessories",
+    "t": "(Cabinet & Shelf Accessories: Style 3–5 realistic items from Glassware & Barware, Dinnerware & Serving Pieces, and Coffee & Tea Collections naturally on open shelves and inside upper cabinets with glass doors where present.)"
    }
   ]
  },
@@ -185,7 +197,7 @@
    "bx": "#E3DAC9",
    "st": "Base",
    "sp": "White Oak",
-   "gr": "Chevron Diagonal",
+   "gr": "Flat-sawn (Cathedral)",
    "fin": "Satin",
    "stone": "Thassos White",
    "prof": "Flat panel",
@@ -200,8 +212,8 @@
    "tx": "Smooth Sanded",
    "pg": "Staining & Dyeing",
    "cov": "Natural Hardwax Oil",
-   "stc": "Warm Cherry",
-   "stt": "Warmer",
+   "stc": "Chestnut",
+   "stt": "As is",
    "pc": "Chalk White",
    "pt": "As is",
    "gc": "Raw Umber",
@@ -223,7 +235,7 @@
    "bx": "#E3DAC9",
    "st": "Base",
    "sp": "White Oak",
-   "gr": "Chevron Diagonal",
+   "gr": "Flat-sawn (Cathedral)",
    "fin": "Satin",
    "stone": "Thassos White",
    "prof": "Flat panel",
@@ -238,8 +250,8 @@
    "tx": "Smooth Sanded",
    "pg": "Staining & Dyeing",
    "cov": "Natural Hardwax Oil",
-   "stc": "Warm Cherry",
-   "stt": "Warmer",
+   "stc": "Chestnut",
+   "stt": "As is",
    "pc": "Chalk White",
    "pt": "As is",
    "gc": "Raw Umber",
@@ -836,7 +848,6 @@
   "floor": "#804000",
   "terminal": "#FFC000",
   "cx_9a03e2ea": "#005500",
-  "cx_cdf5167c": "#770044",
   "glass": "#FF0080",
   "plumb": "#00FF80",
   "door": "#4040FF"
