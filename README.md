@@ -80,7 +80,7 @@ flowchart TD
     A["<b>1. Blender 3D Scene</b><br/>Assign kitchen parts & export via <code>Any_kitchen_masks_V3.py</code>"]
     --> B["<b>2. Mask & Json Files</b><br/><code><scene>_mask.png</code> + <code><scene>_mask.json</code>"]
     B --> C["<b>3. Kitchen Prompt Generator</b><br/>Load mask/Json file in Image Lab & configure materials, lighting & camera"]
-    C --> D["<b>4. AI Image Generation (e.g., Nano Banana)</b><br/>Paste compiled prompt + attach <code>_mask.png</code> as reference<br/>Check final render against target mask colors"]
+    C --> D["<b>4. AI Image Generation </b><br/>Paste the compiled prompt + attach <code>_mask.png</code> as a reference, and generate the final image.<br/"]
 ```
 
 ---
