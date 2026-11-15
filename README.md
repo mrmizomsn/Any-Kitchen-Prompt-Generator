@@ -72,7 +72,6 @@ Instead of manually writing and tweaking prompts for every surface in your refer
 
 ---
 
-## How the Pieces Fit Together
 
 ## How the Pieces Fit Together
 
