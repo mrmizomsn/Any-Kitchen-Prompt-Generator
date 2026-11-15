@@ -1,7 +1,7 @@
 # Kitchen Prompt Generator
 
 <p align="center">
-  <img src="screenshots/screenshot-logo.webp" alt="logo sample" width="500" />
+  <img src="screenshots/screenshot-logo.webp" alt="logo sample" width="300" />
 </p>
 
 
