@@ -76,12 +76,10 @@ Instead of manually writing and tweaking prompts for every surface in your refer
 
 ```mermaid
 flowchart TD
-    A["<b>1. Blender 3D Scene</b><br/>Assign kitchen parts & export via <code>Any_kitchen_masks_V3.py</code>"] 
-    --> B["<b>2. Mask & Json Files</b><br/><code>&lt;scene&gt;_mask.png</code> + <code>&lt;scene&gt;_mask.json </code>"]
-    B --> C["<b>3. Kitchen Prompt Generator</b><br/>Load mask/Json file in Image Lab & configure materials, lighting & camera"]
-    C --> D["<b>4. AI Image Generation (e.g., Nano Banana)</b><br/>Paste compiled prompt + attach <code>_mask.png</code> as reference"]
-    D --> E["<b>5. Color Accuracy Verification</b><br/>Check final render against target mask colors"]
-```
+    A["**1. Blender 3D Scene**<br/>Assign kitchen parts & export via <code>Any_kitchen_masks_V3.py</code>"] --> B["**2. Mask & Json Files**<br/>&lt;scene&gt;_mask.png + &lt;scene&gt;_mask.json"]
+    B --> C["**3. Kitchen Prompt Generator**<br/>Load mask/Json file in Image Lab & configure materials, lighting & camera"]
+    C --> D["**4. AI Image Generation (e.g., Nano Banana)**<br/>Paste compiled prompt + attach <code>_mask.png</code> as reference"]
+    D --> E["**5. Color Accuracy Verification**<br/>Check final render against target mask colors"]
 
 ---
 
