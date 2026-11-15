@@ -1,5 +1,9 @@
 # Kitchen Prompt Generator
-![Mask sample](screenshots/screenshot-logo.webp)
+
+<p align="center">
+  <img src="screenshots/screenshot-logo.webp" alt="logo sample" width="500" />
+</p>
+
 
 **An offline, single-file web tool that builds ultra-high-end, photorealistic architectural kitchen-interior prompts for modern generative image AI models.**
 
