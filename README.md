@@ -1,8 +1,10 @@
 # Kitchen Prompt Generator
+![Mask sample](screenshots/screenshot-logo.webp)
 
 **An offline, single-file web tool that builds ultra-high-end, photorealistic architectural kitchen-interior prompts for modern generative image AI models.**
 
 Feed it a flat-colour kitchen mask (exported via the included Blender script), choose your materials, finishes, lighting, and camera settings for each component, and it compiles a single, copy-ready prompt that maps every surface property to its corresponding mask colour.
+
 
 <div align="center">
 
