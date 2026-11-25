@@ -44,8 +44,11 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--b)
 .ddph .f{font:11px ui-monospace,Consolas,monospace;color:#8fb8ff;word-break:break-word}.ddph .n{font:600 12px ui-monospace,Consolas,monospace;color:#e8f0ff;word-break:break-word}
 .ddn{margin-top:8px;font-weight:700;font-size:13px;color:#fff;text-align:center;line-height:1.25;word-break:break-word}
 .meta{display:flex;flex-wrap:wrap;gap:2px 12px;margin-top:3px;font-size:smaller}.meta a{color:var(--m);text-decoration:none;border-bottom:1px dotted var(--b)}.meta a:hover,.meta a:focus-visible{color:var(--a);border-bottom-color:var(--a)}
+.cxa{border:1px dashed var(--b);border-radius:6px;padding:2px 8px 8px;margin:6px 0 10px}.cxa .row{margin-top:2px}.cxa input{flex:1 1 160px;min-width:0}#mst{font-size:12px}
+/* V3.31 per-component "Include in prompt" box: flat, no effects; unticking only dims the panel below it (opacity), never the box itself. */
+.inc{display:flex;gap:6px;align-items:center;color:var(--t);font-size:13px;font-weight:600;margin:8px 0 2px}.inc input{width:auto;margin:0}.cb.off .cbb{opacity:.5}
 </style></head><body>
-<aside><h1>Kitchen Prompt Generator</h1><small>Target: Gemini / Nano Banana · offline · v3.29</small>
+<aside><h1>Kitchen Prompt Generator</h1><small>Target: Gemini / Nano Banana · offline · v3.31</small>
 <div class="meta"><a href="https://github.com/mrmizomsn/Any-Kitchen-Prompt-Generator" target="_blank" rel="noopener noreferrer" title="Project repository on GitHub">GitHub project</a><a href="mailto:mr_mizo@msn.com" title="Email the creator">mr_mizo@msn.com</a></div><div style="margin:10px 0" id="acc"></div>
 <small>* names (and neutral hex values) assigned by this tool, not by a source. #6DA79F was merged into #6DA7A6.</small></aside>
 <main>
@@ -55,7 +58,8 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--b)
 <h3>Rule check</h3><div id="rl"></div></section>
 <section class="sec" id="t-lab"><div class="card"><b>1 · Mask eyedropper</b><br><small>Upload your flat-colour Blender mask, choose a component, then click its region. The colour becomes that component's legend entry.</small>
 <div class="row" style="margin-top:8px"><input type="file" id="fm" accept="image/*"><select id="ms"></select><label style="margin:0">Blender legend JSON <input type="file" id="fj" accept=".json"></label></div>
-<div class="row" style="margin-top:8px"><label style="margin:0">present if ≥ <input id="mt" type="number" value="0.01" min="0" step="0.001" style="width:80px"> % of mask pixels</label><button id="mf">Forget mask image</button></div><div id="mhs" class="mu" style="margin-top:6px"></div><canvas id="cm"></canvas><div id="ml" style="margin-top:8px"></div></div>
+<div class="row" style="margin-top:8px"><label style="margin:0">present if ≥ <input id="mt" type="number" value="0.01" min="0" step="0.001" style="width:80px"> % of mask pixels</label><button id="mf">Forget mask image</button></div>
+<div class="row" style="margin-top:8px"><button type="button" id="mtg" class="on" aria-pressed="true" title="Turn mask usage off or on without deleting any assigned mask colour">Mask: active</button><span id="mst" class="mu"></span></div><div id="mhs" class="mu" style="margin-top:6px"></div><canvas id="cm"></canvas><div id="ml" style="margin-top:8px"></div></div>
 <div class="card"><b>2 · Rendered-output checker (ΔE2000)</b><br><small>Upload the AI render, pick a component, click its region (9×9 average). Compared with the target colour.</small>
 <div class="row" style="margin-top:8px"><input type="file" id="fr" accept="image/*"><select id="rs"></select><input id="tg" placeholder="target hex (optional)" size="14"><label style="margin:0">pass ≤ ΔE <input id="th" type="number" value="6" min="1" max="30" style="width:60px"></label></div>
 <canvas id="cr"></canvas><div id="ck"></div></div></section>
@@ -119,14 +123,15 @@ const SK=['Alabaster White','Charcoal Gray','Taupe Beige','Sage Green','Ink Navy
 const AT=['Warm Amber (2700K)','Soft Warm White (3000K)','Neutral White (4000K)','Cool Daylight (5000K)'];
 const PL=[['Undermount Single-Bowl with Gooseneck Faucet','a seamless undermount stainless steel single-bowl sink paired with a sleek, high-arc gooseneck pull-down faucet'],['Farmhouse Apron-Front with Bridge Faucet','a classic white ceramic apron-front farmhouse sink paired with an elegant, deck-mounted vintage bridge faucet'],['Integrated Marble Basin with Minimalist Wall Faucet','a luxury integrated solid marble block sink basin paired with a clean, minimalist wall-mounted matte black faucet'],['Double-Bowl Drop-In with Commercial Spring Faucet','a heavy-duty drop-in double-bowl sink paired with a flexible, high-pressure professional commercial spring faucet'],['Vessel Bowl with Tall Vessel Faucet','a contemporary surface-mounted round stone vessel bowl sink paired with a matching single-handle tall vessel faucet'],['Concrete Trough Sink with Dual Industrial Faucets','a modern raw concrete rectangular trough sink paired with dual wall-mounted matte metal industrial-style wheel-handle faucets']];
 const LM=[['Neutral Daylight (default)','neutral D65 even daylight with no colour cast, so the specified colours read true'],['Sunlit Afternoon','bathed in bright, direct afternoon sunlight with warm highlights and sharp, distinct architectural shadows'],['Soft Overcast','illuminated by soft, highly diffused overcast daylight with completely even distribution and no harsh shadows'],['Crisp Morning','lit by cool, crisp morning daylight with long, soft angled shadows and a clear, fresh atmosphere'],['Golden Hour','flooded with warm, glowing amber light from a low-angle golden hour sun, creating long, dramatic sun rays'],['Moody Dusk','captured during the deep blue hour of twilight, featuring a moody, cool ambient sky light mixed with warm interior window glows'],['Night Atmospheric','set in a dark nighttime setting, illuminated entirely by subtle, localized indoor architectural accent lighting and atmospheric shadows'],['Studio Three-Point','professionally lit with clean, balanced studio three-point lighting, featuring crisp key highlights and soft fill control'],['Camera Flash','Completely dark nighttime environment with a direct on-camera flash as the only light source, Use harsh direct flash lighting, strong frontal illumination, crisp hard-edged shadows, realistic flash falloff, subtle reflective highlights, deep dark background areas, and a disposable-camera flash photography style. No daylight, sunlight, moonlight, ambient light, or artificial architectural lighting, or other light sources'],['Cinematic Low-Key','framed in a highly dramatic cinematic low-key environment, characterized by deep chiaroscuro shadows and single-source moody highlights']];
-const C={base:{n:'Base Cabinets & Plinth',t:'cab'},upper:{n:'Upper Cabinets',t:'cab'},transom:{n:'Transom Cabinets',t:'cab'},terminal:{n:'Terminal & Corner Pantry Cabinets',t:'cab',sync:'base'},glass:{n:'Glass-Display Cabinets',t:'glass'},island:{n:'Island Back Face',t:'cab'},itop:{n:'Island Countertop',t:'top',sync:'counter'},counter:{n:'Main Kitchen Countertop & Backsplash',t:'top'},hw:{n:'Cabinet Hardware',t:'hw'},wall:{n:'Wall Surface',t:'wall'},floor:{n:'Flooring',t:'floor'},plumb:{n:'Plumbing Fixtures',t:'plumb'},door:{n:'Steel Doors',t:'door'},spot:{n:'Ceiling Spotlights',t:'spot'},pendant:{n:'Pendant Lights',t:'pendant'},accent:{n:'Light Accents',t:'accent'}};
+const C={base:{n:'Base Cabinets & Plinth',t:'cab'},upper:{n:'Upper Cabinets',t:'cab',sync:'base'},transom:{n:'Transom Cabinets',t:'cab',sync:'base'},terminal:{n:'Terminal & Corner Pantry Cabinets',t:'cab',sync:'base'},glass:{n:'Glass-Display Cabinets',t:'glass'},island:{n:'Island Back Face',t:'cab'},itop:{n:'Island Countertop',t:'top',sync:'counter'},counter:{n:'Main Kitchen Countertop & Backsplash',t:'top'},hw:{n:'Cabinet Hardware',t:'hw'},wall:{n:'Wall Surface',t:'wall'},floor:{n:'Flooring',t:'floor'},plumb:{n:'Plumbing Fixtures',t:'plumb'},door:{n:'Steel Doors',t:'door'},spot:{n:'Ceiling Spotlights',t:'spot'},pendant:{n:'Pendant Lights',t:'pendant'},accent:{n:'Light Accents',t:'accent'}};
 const GROUPS=[['Base Cabinets & Plinth',['base']],['Upper Cabinets',['upper']],['Transom Cabinets',['transom']],['Terminal & Corner Pantry Cabinets',['terminal']],['Glass-Display Cabinets',['glass']],['Island Back Face & Countertop',['island','itop']],['Main Kitchen Countertop & Backsplash',['counter']],['Cabinet Hardware',['hw']],['Wall Paint & Finishes',['wall']],['Flooring',['floor']],['Plumbing Fixtures',['plumb']],['Steel Doors',['door']],['Lighting Fixtures',['spot','pendant']],['Light Accents',['accent']],['Lighting Mode',['lm']]];
 const SH=FIN.slice(0,5).map(x=>x[0]);
 /* V3: keys (C, S.m, S.c, ...) are permanent; labels (S.lb) and appendix text (S.ap) are display-only. */
 const ROWT=new Map();
 const BK=Object.keys(C),CUS=()=>Object.keys(C).filter(k=>C[k].t=='custom'),lbl=k=>(S.lb&&S.lb[k])||(C[k]?C[k]['n']:k),ttl=(t,k)=>{const r=(S.lb&&S.lb[k])||t;ROWT.set(r,k);return r},KEYRX=/^cx_[a-z0-9_]{1,36}$/;
-const grps=()=>{const c=CUS();return c.length?[...GROUPS,['Custom Components',c]]:GROUPS},gname=g=>g[1].length==1&&g[1][0]!='lm'&&S.lb[g[1][0]]?S.lb[g[1][0]]:g[0];
-function lbUI(k){const cu=C[k].t=='custom',ap=(S.ap||{})[k]||'';return`<div class="lbx"><label>Layout title (display name only; the internal key never changes)</label><input data-a="lb" data-k="${k}" data-mck="${k}" value="${H(lbl(k))}" maxlength="80" placeholder="${H(C[k]['n'])}"><label>Custom Appendix Text${cu?' (the whole description for this component)':' (appended directly after the generated description)'}</label><div class="apr"><div class="tgbar"><button type="button" data-a="tgsave" data-k="${k}" title="Save this text as a quick-access tag" aria-label="Save appendix text as a tag">＋ Tag</button><button type="button" data-a="tgclear" data-k="${k}" title="Erase the text inserted from the selected tag and deselect it" aria-label="Clear the selected tag from this field">clear tag</button></div><textarea data-a="ap" data-k="${k}" rows="${cu?3:2}" spellcheck="false" placeholder="${cu?'e.g. A stone pizza oven with a black steel door':'optional'}">${H(ap)}</textarea></div><div class="tgs" data-tgs="${k}">${tagsHTML(k)}</div><div class="tgu" data-tgu="${k}">${tgUndoHTML(k)}</div></div>`}
+/* V3.3: the Custom Components section is always present (it holds the add-component control); its title never takes a single component's label. */
+const grps=()=>[...GROUPS,['Custom Components',CUS()]],gname=g=>g[0]!='Custom Components'&&g[1].length==1&&g[1][0]!='lm'&&S.lb[g[1][0]]?S.lb[g[1][0]]:g[0];
+function lbUI(k){const cu=C[k].t=='custom',ap=(S.ap||{})[k]||'';return`<div class="lbx"><label>Layout title (display name only; the internal key never changes)</label><input data-a="lb" data-k="${k}" data-mck="${k}" value="${H(lbl(k))}" maxlength="80" placeholder="${H(C[k]['n'])}"><label>Custom Appendix Text${cu?' (the whole description for this component)':' (added after the generated description, which a period closes first)'}</label><div class="apr"><div class="tgbar"><button type="button" data-a="tgsave" data-k="${k}" title="Save this text as a quick-access tag" aria-label="Save appendix text as a tag">＋ Tag</button><button type="button" data-a="tgclear" data-k="${k}" title="Erase the text inserted from the selected tag and deselect it" aria-label="Clear the selected tag from this field">clear tag</button></div><textarea data-a="ap" data-k="${k}" rows="${cu?3:2}" spellcheck="false" placeholder="${cu?'e.g. A stone pizza oven with a black steel door':'optional'}">${H(ap)}</textarea></div><div class="tgs" data-tgs="${k}">${tagsHTML(k)}</div><div class="tgu" data-tgu="${k}">${tgUndoHTML(k)}</div></div>`}
 function syncLabelUI(){grps().forEach((g,i)=>{const e=document.querySelector('[data-sum="'+i+'"]');if(e)e.textContent=gname(g)});
 Object.keys(C).forEach(k=>{const h=document.querySelector('[data-h3="'+k+'"]');if(h)h.textContent=lbl(k)});
 document.querySelectorAll('input[data-a="lb"]').forEach(e=>{if(e!==document.activeElement&&C[e.dataset.k])e.value=lbl(e.dataset.k)});
@@ -227,7 +232,7 @@ function syncCustom(){Object.keys(C).forEach(k=>{if(C[k].t=='custom'&&!(S.cx&&S.
 const SC=[['Painted Cabinetry','applied as a pristine, smooth painted cabinet-grade enamel finish with absolutely no visible wood grain, pore texture, or timber patterning'],['High-Pressure Laminate','executed in a flawless, perfectly uniform solid architectural laminate finish with a clean flat contemporary surface layer and zero organic grain'],['Opaque Conversion Varnish','sealed with a thick, factory-sprayed opaque conversion varnish coating that entirely blankets the underlying substrate into a uniform color block']];
 const SCP=Object.fromEntries(SC),an=t=>(/^[aeiou]/i.test(t)?'an ':'a ')+t;
 const F=o=>({mode:'solid',hex:'#B0C4DE',bx:'#B0C4DE',st:'Base',sp:'White Oak',gr:'Straight Grain',fin:'Satin',stone:'Thassos White',prof:'Flat panel',hs:'Modern Minimalist',hf:'Brushed Nickel',pend:'Opal Glass',wf:'Matte Emulsion',gh:GH[0],wp:WP[0],stain:STAINS[0],cs:SC[0][0],tx:TXL[0][0],pg:PGN[0],cov:COV[0],stc:'Golden Oak',stt:'As is',pc:'Chalk White',pt:'As is',gc:'Raw Umber',ds:[],fst:'Carrara Marble',fsp:'Vein-Cut',ffin:'Honed',pl:PL[1][0],df:'Matte Black',sk:'Matte White',at1:AT[1],at2:AT[1],ref:'',un:false,...o}),col=h=>({hex:h,bx:h});
-const D=()=>({v:1,leg:true,lm:LM[0][0],ge:false,gt:'',asp:'21:9',tpl:{},mn:{},lb:{},ap:{},tg:{},tt:{},cx:{},bl:{},cam:'',c:{base:F(),upper:F(col('#5B6770')),transom:F(col('#5B6770')),terminal:F(),glass:F(),island:F(col('#3E6393')),itop:F({mode:'stone',fin:'Honed'}),counter:F({mode:'stone',fin:'Honed'}),hw:F(),wall:F({...col('#E3DAC9'),fin:'Ultra-Matte'}),floor:F({mode:'wood'}),plumb:F(),door:F(),spot:F(),pendant:F(),accent:F()},m:{}});
+const D=()=>({v:1,leg:true,lm:LM[0][0],ge:false,gt:'',asp:'21:9',tpl:{},mn:{},lb:{},ap:{},tg:{},tt:{},cx:{},bl:{},cam:'',ex:{},c:{base:F(),upper:F(col('#5B6770')),transom:F(col('#5B6770')),terminal:F(),glass:F(),island:F(col('#3E6393')),itop:F({mode:'stone',fin:'Honed'}),counter:F({mode:'stone',fin:'Honed'}),hw:F(),wall:F({...col('#E3DAC9'),fin:'Ultra-Matte'}),floor:F({mode:'wood'}),plumb:F(),door:F(),spot:F(),pendant:F(),accent:F()},m:{},syv:1});
 let CP={on:false,name:'',colors:[],msg:''},RF=false;
 function colorUI(k,c){const cb=`<label style="display:flex;gap:6px;align-items:center;color:var(--t)"><input type="checkbox" data-a="cp"${CP.on?' checked':''}> Custom Palette</label>`;
 if(!CP.on)return cb+colorUI0(k,c);
@@ -289,9 +294,12 @@ if(d.t=='door')h+=`<label>Steel frame finish</label>${sel(k,'df',DF,c.df)}<small
 if(d.t=='spot')h+=`<label>Spotlight finish</label>${sel(k,'sk',SK,c.sk)}`;
 if(d.t=='accent')h+=`<label>Under-cabinet &amp; shelf LED strips</label>${sel(k,'at1',AT,c.at1)}<label>Range hood lighting</label>${sel(k,'at2',AT,c.at2)}`;
 if(['cab','top','hw','wall','floor'].includes(d.t))h+=`<label>Manufacturer / sample code (optional, empty by default)</label><input data-a="f" data-f="ref" data-k="${k}" value="${H(c.ref)}">`;return h}
+function incUI(k){return`<label class="inc"><input type="checkbox" data-a="inc" data-k="${k}"${exOn(k)?'':' checked'} aria-label="Include ${H(lbl(k))} in the compiled prompt"> Include in compiled prompt</label>`}
+function syncInc(k){const b=document.querySelector('input[data-a="inc"][data-k="'+k+'"]'),w=document.querySelector('[data-cb="'+k+'"]');if(b)b.checked=!exOn(k);if(w)w.classList.toggle('off',exOn(k))}
+const syncIncAll=()=>BK.forEach(syncInc);
 function buildAcc(){const GE=`<details open><summary>GEOMETRY EXCEPTION</summary><div class="pn"><div id="p-ge">${geUI()}</div></div></details>`,TP=`<details><summary>TEMPLATE STRUCTURE SETTINGS</summary><div class="pn"><div id="p-tpl">${tplUI()}</div></div></details>`;
-$('#acc').innerHTML=TP+GE+grps().map((g,i)=>`<details${i?'':' open'}><summary data-sum="${i}"${g[1].length==1&&g[1][0]!='lm'&&g[0]!='Custom Components'?` data-mck="${g[1][0]}"`:''}>${H(gname(g))}</summary><div class="pn">${g[1].map(k=>{const cu=C[k]&&C[k].t=='custom';return`${g[1].length>1||cu?`<h3 data-h3="${k}" data-mck="${k}">${H(lbl(k))}</h3>`:''}${k=='lm'?'':lbUI(k)}<div id="p-${k}">${k=='lm'?lmUI():panel(k)}</div>${cu?`<button data-a="cxdel" data-k="${k}">Remove custom component</button>`:''}`}).join('')}</div></details>`).join('');
-const o=Object.keys(C).map(k=>`<option value="${k}">${H(lbl(k))}</option>`).join('');$('#ms').innerHTML=o;$('#rs').innerHTML=o;$('#leg').checked=S.leg;syncMaskColors()}
+$('#acc').innerHTML=TP+GE+grps().map((g,i)=>`<details${i?'':' open'}><summary data-sum="${i}"${g[1].length==1&&g[1][0]!='lm'&&g[0]!='Custom Components'?` data-mck="${g[1][0]}"`:''}>${H(gname(g))}</summary><div class="pn">${g[0]=='Custom Components'?cxAddUI():''}${g[1].map(k=>{const cu=C[k]&&C[k].t=='custom';return`${g[1].length>1||cu?`<h3 data-h3="${k}" data-mck="${k}">${H(lbl(k))}</h3>`:''}${BK.includes(k)?`<div class="cb${exOn(k)?' off':''}" data-cb="${k}">${incUI(k)}<div class="cbb">`:''}${k=='lm'?'':lbUI(k)}<div id="p-${k}">${k=='lm'?lmUI():panel(k)}</div>${BK.includes(k)?'</div></div>':''}${cu?`<button data-a="cxdel" data-k="${k}">Remove custom component</button>`:''}`}).join('')}</div></details>`).join('');
+const o=Object.keys(C).map(k=>`<option value="${k}">${H(lbl(k))}</option>`).join(''),pm=$('#ms').value,pr=$('#rs').value;$('#ms').innerHTML=o;$('#rs').innerHTML=o;if(C[pm])$('#ms').value=pm;if(C[pr])$('#rs').value=pr;$('#leg').checked=S.leg;syncMaskColors()}
 /* V3.27 finish classes: Polished is the only reflective stone finish; every other stone finish is strictly non-reflective and gets its own texture wording. */
 const STX={Leathered:'a fine leathered texture',Brushed:'a fine brushed texture',Tumbled:'softly worn, tumbled edges','Acid-Washed':'a lightly etched acid-washed surface','Bush-Hammered':'a coarse, pitted bush-hammered texture',Flamed:'a rough flamed surface texture',Sandblasted:'a fine sandblasted grain'},
 RFT={Leathered:'fine leathered micro-relief',Brushed:'fine brushed micro-relief',Tumbled:'softly worn micro-relief','Acid-Washed':'lightly etched micro-relief','Bush-Hammered':'coarse pitted micro-relief',Flamed:'rough flamed micro-relief',Sandblasted:'fine sandblasted micro-relief'},
@@ -314,8 +322,10 @@ let MH=null,MT=0.01;
 const maskOn=()=>S.leg&&Object.values(S.m).some(Boolean);
 function hist(d,w,h){const m=new Map();let t=0;for(let i=0;i<w*h*4;i+=4){if(d[i+3]<250)continue;const k=(d[i]<<16)|(d[i+1]<<8)|d[i+2];m.set(k,(m.get(k)||0)+1);t++}return{total:t,map:m}}
 const cnt=h=>MH?MH.map.get(parseInt(h.slice(1),16))||0:0;
-function pres(k){if(!maskOn())return{ok:true};const m=S.m[k];if(!m)return{ok:false,why:'no mask colour assigned'};if(MH){const n=cnt(m),sh=MH.total?n/MH.total*100:0;if(sh<MT)return{ok:false,why:n?`mask colour ${m.toUpperCase()} covers only ${sh.toFixed(4)}% of the loaded mask image, minimum ${MT}%`:`mask colour ${m.toUpperCase()} is not in the loaded mask image`}}return{ok:true}}
-const excluded=()=>maskOn()?Object.keys(C).map(k=>[k,pres(k)]).filter(x=>!x[1].ok).map(x=>[x[0],x[1].why]):[];
+/* V3.31: S.ex holds only the UNTICKED standard components ({key:true}); an empty object means everything is included, so older configs behave exactly as before. pres() is the single gate used by compile(), the coloured prompt pane, the legend, the rule check and the separation check. */
+const exOn=k=>!!(S.ex&&S.ex[k])&&BK.includes(k);
+function pres(k){if(exOn(k))return{ok:false,why:'Include in prompt is unchecked',un:true};if(!maskOn())return{ok:true};const m=S.m[k];if(!m)return{ok:false,why:'no mask colour assigned'};if(MH){const n=cnt(m),sh=MH.total?n/MH.total*100:0;if(sh<MT)return{ok:false,why:n?`mask colour ${m.toUpperCase()} covers only ${sh.toFixed(4)}% of the loaded mask image, minimum ${MT}%`:`mask colour ${m.toUpperCase()} is not in the loaded mask image`}}return{ok:true}}
+const excluded=()=>Object.keys(C).map(k=>[k,pres(k)]).filter(x=>!x[1].ok).map(x=>[x[0],x[1].why]);
 function importLegend(j){if(!j||!Array.isArray(j.components))throw Error('no components');['lb','ap','cx','bl'].forEach(f=>{S[f]=S[f]||{}});
 const sc3=typeof j.schema=='number'&&j.schema>=3,px=(j.verification&&j.verification.pixels_by_component)||null,set=[],skip=[],labelDiff=[],labelSet=[],hidden=[],cust=[];
 const syncLbl=(k,x)=>{if(typeof x.label!='string')return;const L=x.label.trim().slice(0,80);
@@ -360,7 +370,7 @@ if(S.ge)L.push('','GEOMETRY EXCEPTIONS',S.gt.trim()?S.gt:'None.');
 let lt=LT[lm[0]];if(!P.accent)lt=lt.replace(' Preserve the specified warm LED color temperatures alongside the cool daylight.','');
 L.push('','LIGHTING',tget('lightintro'),lt,'',tget('photo'),tget('cam'));return L.join('\n')}
 function rules(){const r=[],ex=excluded(),XS=new Set(ex.map(x=>x[0])),ks=Object.keys(C).filter(k=>C[k].t=='cab'||C[k].t=='top'||C[k].t=='floor');
-ex.forEach(([k,w])=>r.push(`${lbl(k)}: excluded from the prompt (${w}).`));CUS().forEach(k=>{if(!XS.has(k)&&S.m[k]&&!((S.ap||{})[k]||'').trim())r.push(`${lbl(k)}: custom component has a colour but no description; add Custom Appendix Text or it is omitted from the prompt.`)});
+ex.forEach(([k,w])=>r.push(`${lbl(k)}: excluded from the prompt (${w}).`+(exOn(k)&&maskOn()&&S.m[k]?' Its mask region, if present in the mask image, gets no instructions.':'')));CUS().forEach(k=>{if(!XS.has(k)&&S.m[k]&&!((S.ap||{})[k]||'').trim())r.push(`${lbl(k)}: custom component has a colour but no description; add Custom Appendix Text or it is omitted from the prompt.`)});
 ks.forEach(k=>{if(XS.has(k))return;const c=S.c[eff(k)];
 if(c.mode!='wood'&&c.fin=='Wire-brushed')r.push(`${lbl(k)}: wire-brushed is a wood-grain texture; it has no meaning on ${c.mode}.`);
 if(c.mode=='wood'&&/Chevron|Herringbone/.test(c.gr)&&(k=='transom'||k=='base'))r.push(`${lbl(k)}: ${c.gr} on narrow fronts will read as busy and may be mis-scaled by the model.`)});
@@ -372,13 +382,13 @@ if(maskOn()&&/#[0-9a-f]{6}/i.test(tget('rules')))r.push('MASK REGION RULES conta
 if(S.cam=='c9'&&['Camera Flash','Studio Three-Point'].includes(S.lm))r.push(`Camera profile "${CAMT[8].l}" describes a 20-second tripod long exposure, which contradicts ${S.lm} lighting; expect an inconsistent image.`);
 if((tget('cam')+tget('photo')).split('Camera & Rendering Specifications').length>2)r.push('The heading "Camera & Rendering Specifications" appears more than once in the camera/photographic blocks.');
 contrast().forEach(([a,b,d])=>{if(d<8)r.push(`Low separation: ${lbl(a)} vs ${lbl(b)} (ΔE ${d.toFixed(1)}); the model may blur the boundary.`)});
-const g={};Object.keys(C).forEach(k=>{const h=(S.m[k]||'').toUpperCase();if(h)(g[h]=g[h]||[]).push(k)});Object.entries(g).forEach(([h,a])=>{if(new Set(a.map(desc)).size>1)r.push(`Mask colour ${h} is shared by ${a.map(k=>lbl(k)).join(' + ')} but their materials differ; ambiguous legend.`)});return r}
-function contrast(){const P=[['base','upper'],['base','counter'],['base','wall'],['upper','wall'],['counter','wall'],['island','base']],o=[];P.forEach(([a,b])=>{if(!pres(a).ok||!pres(b).ok)return;const x=S.c[eff(a)],y=S.c[eff(b)];if(x.mode=='solid'&&y.mode=='solid'&&a!='hw')o.push([a,b,dE(x.hex,y.hex)])});return o}
+const g={};Object.keys(C).forEach(k=>{const h=(S.m[k]||'').toUpperCase();if(h&&!exOn(k))(g[h]=g[h]||[]).push(k)});Object.entries(g).forEach(([h,a])=>{if(new Set(a.map(desc)).size>1)r.push(`Mask colour ${h} is shared by ${a.map(k=>lbl(k)).join(' + ')} but their materials differ; ambiguous legend.`)});return r}
+function contrast(){const P=[['base','upper'],['base','counter'],['base','wall'],['upper','wall'],['counter','wall'],['island','base']],o=[];P.forEach(([a,b])=>{if(!pres(a).ok||!pres(b).ok||eff(a)==eff(b))return;const x=S.c[eff(a)],y=S.c[eff(b)];if(x.mode=='solid'&&y.mode=='solid'&&a!='hw')o.push([a,b,dE(x.hex,y.hex)])});return o}
 let TESTING=false,LASTSAVED='';function persist(){LASTSAVED=JSON.stringify(S);if(!TESTING)try{localStorage.setItem('kpg.s',LASTSAVED)}catch(e){}}
 function out(){if(tsig()!=TPLSIG&&$('#p-tpl'))$('#p-tpl').innerHTML=tplUI();const p=compile();$('#out').innerHTML=promptHTML(p);const r=rules();$('#rl').innerHTML=r.length?r.map(m=>`<div class="wn">⚠ ${H(m)}</div>`).join(''):'<div class="ok">No rule conflicts.</div>';
 $('#ct').innerHTML='<table>'+contrast().map(([a,b,d])=>`<tr><td>${lbl(a)} / ${lbl(b)}</td><td>${d.toFixed(1)}</td><td class="${d<8?'er':'ok'}">${d<8?'low':'ok'}</td></tr>`).join('')+'</table>';
 $('#ml').innerHTML=Object.keys(C).map(k=>{const m=S.m[k],pr=pres(k);return`<div><i class="sw" style="background:${m||'transparent'}"></i> <span data-mck="${k}">${H(lbl(k))}</span> <code>${m||'not set'}</code>${MH&&m?` <small>${(cnt(m)/MH.total*100).toFixed(3)}%</small>`:''} ${maskOn()?`<small class="${pr.ok?'ok':'er'}">${pr.ok?'in prompt':'excluded'}</small>`:''} ${m?`<button data-a="clr" data-k="${k}">×</button>`:''}</div>`}).join('');$('#mhs').innerHTML=MH?`Mask image: ${H(MH.name)}, ${MH.w}×${MH.h}, ${MH.map.size} distinct colours.`:'';
-syncMaskColors();persist()}
+syncMaskColors();maskUI();persist()}
 function draw(k){Object.keys(C).filter(x=>x==k||C[x].sync==k).forEach(x=>{const e=$('#p-'+x);if(e)e.innerHTML=panel(x)});out()}
 function redrawAll(){Object.keys(C).forEach(x=>{const e=$('#p-'+x);if(e)e.innerHTML=panel(x)});out()}
 function dom(d,w,h){const st=Math.max(1,Math.floor(Math.sqrt(w*h/60000))),m=new Map();for(let y=0;y<h;y+=st)for(let x=0;x<w;x+=st){const i=(y*w+x)*4;if(d[i+3]<128||(d[i]>245&&d[i+1]>245&&d[i+2]>245))continue;const k=(d[i]>>3)<<10|(d[i+1]>>3)<<5|d[i+2]>>3,e=m.get(k)||[0,0,0,0];e[0]++;e[1]+=d[i];e[2]+=d[i+1];e[3]+=d[i+2];m.set(k,e)}
@@ -408,9 +418,12 @@ if(t=='wall')return{'Matte Emulsion':'even matte paint film','Lime Wash':'soft c
 if(t=='floor')return c.mode=='wood'?wood():stone(c.fst,c.ffin);
 if(t=='cab'||t=='top')return c.mode=='wood'?(c.pg==PGN[2]?paint():wood()):c.mode=='stone'?stone(c.stone,c.fin):paint();
 return''}
-const dd=k=>{const t=desc(k)+(RF&&refine(k)?` (${refine(k)})`:''),a0=((S.ap||{})[k]||'').trim(),a=C[k]&&C[k].t!='custom'?a0.replace(/\s*[\r\n]+\s*/g,' '):a0;return a?(t?t+' '+a:a):t};
+/* V3.3: a generated description is closed with a period before a filled appendix (custom components have no generated description, so their appendix stays the whole text). */
+const apJoin=(t,a)=>t?(/[.!?]$/.test(t)?t:t+'.')+' '+a:a;
+const dd=k=>{const t=desc(k)+(RF&&refine(k)?` (${refine(k)})`:''),a0=((S.ap||{})[k]||'').trim(),a=C[k]&&C[k].t!='custom'?a0.replace(/\s*[\r\n]+\s*/g,' '):a0;return a?apJoin(t,a):t};
 function go(t){const a=t.dataset.a,k=t.dataset.k,v=t.dataset.v??t.value,c=S.c[k];
 if(/^tg(save|use|undo|ed|ok|no|del|clear)$/.test(a))return tgGo(a,k,v);
+if(a=='inc'){if(!BK.includes(k))return;S.ex=S.ex||{};if(t.checked)delete S.ex[k];else S.ex[k]=true;syncInc(k);return out()}
 if(a=='camt'){S.cam=v;S.tpl.cam=camBuild(v,S.lm);$('#p-tpl').innerHTML=tplUI();return out()}
 if(a=='tp'){const d=TD[k];if(v===d)delete S.tpl[k];else S.tpl[k]=v;if(!TGAPPLY&&TGU['tpl.'+k]!==undefined){delete TGU['tpl.'+k];tgRenderUndo('tpl.'+k)}tgMark('tpl.'+k);const bb=$('#tb-'+k);if(bb)bb.textContent=tbadge(k);if(k=='cam'){const st=$('#cam-st');if(st)st.innerHTML=camSt()}return out()}
 if(a=='tpr'){delete S.tpl[k];if(k=='cam')S.cam='';$('#p-tpl').innerHTML=tplUI();return out()}
@@ -419,7 +432,8 @@ if(a=='ge'){S.ge=t.checked;$('#p-ge').innerHTML=geUI();return out()}
 if(a=='gt'){S.gt=t.value;if(TGU.ge!==undefined){delete TGU.ge;tgRenderUndo('ge')}tgMark('ge');return out()}
 if(a=='lb'){const t2=String(v).trim().slice(0,80);if(!t2||t2==C[k]['n'])delete S.lb[k];else S.lb[k]=t2;syncLabelUI();return out()}
 if(a=='ap'){if(String(v).trim())S.ap[k]=v;else delete S.ap[k];if(TGU[k]!==undefined){delete TGU[k];tgRenderUndo(k)}tgMark(k);return out()}
-if(a=='cxdel'){delete S.cx[k];['c','m','mn','lb','ap','bl','tg'].forEach(f=>{if(S[f])delete S[f][k]});delete C[k];buildAcc();return out()}
+if(a=='cxadd'){cxAdd();return}
+if(a=='cxdel'){delete S.cx[k];['c','m','mn','lb','ap','bl','tg'].forEach(f=>{if(S[f])delete S[f][k]});delete C[k];rebuildKeep();return out()}
 if(a=='cp'){CP.on=t.checked;return redrawAll()}
 if(a=='cpf'){if(t.files[0])palFile(t.files[0]);return}
 if(a=='cpe'){const m=/^#?([0-9a-f]{6})$/i.exec(v.trim()),i=+t.dataset.i;if(m){const o=CP.colors[i].hex,n=('#'+m[1]).toUpperCase();CP.colors[i].hex=n;Object.values(S.c).forEach(q=>{if(q.hex==o)q.hex=q.bx=n})}return redrawAll()}
@@ -432,6 +446,24 @@ else if(a=='mode'){c.mode=v;const L=C[k].t=='floor'?FIN.map(x=>x[0]):SH;c.fin=v=
 else if(a=='ds'){const l=c.ds||[];c.ds=t.checked?[...new Set([...l,v])]:l.filter(x=>x!=v)}
 else if(a=='f')c[t.dataset.f]=v;else if(a=='unlock')Object.assign(c,JSON.parse(JSON.stringify(S.c[C[k].sync])),{un:true});else if(a=='resync')c.un=false;
 draw(k)}
+/* V3.3 custom components added from the dashboard. A new item gets a permanent cx_ key, no mask colour (S.m stays empty until one is picked or imported) and an empty description:
+   its Custom Appendix Text is its whole description. It is registered through S.cx/syncCustom exactly like a Blender-imported custom component. */
+const CXMAX=24,cxSlug=n=>String(n).toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,20)||'item';
+function cxKey(n){let k;do{k='cx_'+cxSlug(n)+'_'+Math.random().toString(36).slice(2,6)}while(C[k]||(S.cx&&S.cx[k]));return k}
+function cxAddUI(){const n=CUS().length;return`<div class="cxa"><label for="cxn">Add a custom component (a surface or object the standard list does not cover)</label><div class="row"><input id="cxn" maxlength="80" placeholder="e.g. Pizza Oven" autocomplete="off" spellcheck="false"><button type="button" data-a="cxadd">\uff0b Add component</button></div><small class="mu">${n?n+' custom component'+(n>1?'s':'')+' below. ':'None yet. '}A new component appears in the Image Lab lists with no mask colour until you pick or import one. Its Custom Appendix Text is its whole description in the prompt.</small></div>`}
+function rebuildKeep(){const open=[...document.querySelectorAll('#acc>details')].map(d=>d.open);buildAcc();document.querySelectorAll('#acc>details').forEach((d,i)=>{if(i<open.length)d.open=open[i]})}
+function cxAdd(name){const inp=$('#cxn'),n=String(name!==undefined?name:(inp?inp.value:'')).replace(/\s+/g,' ').trim().slice(0,80);
+if(!n){tgToast('Type a name for the component first',1);return null}
+if(CUS().length>=CXMAX){tgToast('Limit of '+CXMAX+' custom components reached',1);return null}
+const dup=Object.keys(C).find(k=>C[k]['n'].toLowerCase()==n.toLowerCase()||lbl(k).toLowerCase()==n.toLowerCase());if(dup){tgToast('A component named \u201c'+lbl(dup)+'\u201d already exists',1);return null}
+S.cx=S.cx||{};const k=cxKey(n);S.cx[k]={n};syncCustom();rebuildKeep();const ds=document.querySelectorAll('#acc>details');if(ds.length)ds[ds.length-1].open=true;out();
+const ta=document.querySelector('textarea[data-a="ap"][data-k="'+k+'"]');if(ta&&!TESTING){ta.scrollIntoView({block:'nearest'});ta.focus()}
+tgToast('Custom component added: '+n);return k}
+document.addEventListener('keydown',e=>{if(e.key=='Enter'&&e.target&&e.target.id=='cxn'){e.preventDefault();cxAdd()}});
+/* V3.3 Image Lab mask switch: the same flag as the Prompt tab's "region legend" box (S.leg), so it is saved, exported and imported with the config. Assigned colours are never touched. */
+function maskUI(){const b=$('#mtg'),st=$('#mst'),l=$('#leg');if(l)l.checked=!!S.leg;if(!b||!st)return;const n=Object.values(S.m||{}).filter(Boolean).length,on=!!S.leg;b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));b.textContent=on?'Mask: active (click to deactivate)':'Mask: deactivated (click to reactivate)';
+st.textContent=!n?'No mask colours assigned yet, so the prompt is built without a mask.':on?n+' assigned colour'+(n>1?'s':'')+' in use.':n+' assigned colour'+(n>1?'s are':' is')+' kept but ignored: the prompt is built without a mask until you reactivate it.'}
+$('#mtg').onclick=()=>{S.leg=!S.leg;out()};
 document.addEventListener('click',e=>{const t=e.target.closest('button[data-a]');t&&go(t)});
 document.addEventListener('change',e=>{const t=e.target;if(t.dataset.a&&t.tagName!='BUTTON')go(t)});
 document.addEventListener('input',e=>{const t=e.target;if((t.type=='color'||t.dataset.a=='gt'||t.dataset.a=='tp'||t.dataset.a=='asp'||t.dataset.a=='lb'||t.dataset.a=='ap')&&t.dataset.a)go(t)});
@@ -447,12 +479,14 @@ $('#logb').onclick=()=>{const p=compile();LOG.unshift({t:new Date().toISOString(
 const dl=(n,t)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download=n;a.click()};
 $('#lx').onclick=()=>dl('prompt_run_log.json',JSON.stringify(LOG,null,1));
 function parse(txt){const o=JSON.parse(txt);if(!o||o.v!==1||!o.c)throw Error('Unsupported or missing version field');const B=D(),cxs=Object.fromEntries(Object.entries(o.cx&&typeof o.cx=='object'?o.cx:{}).filter(([k,v])=>KEYRX.test(k)&&v&&typeof v.n=='string'&&v.n.trim()).map(([k,v])=>[k,{n:v.n.trim().slice(0,80)}])),KS=[...BK,...Object.keys(cxs)],dN=k=>cxs[k]?cxs[k].n:C[k]['n'],isS=v=>typeof v=='string'&&v.trim().length>0;KS.forEach(k=>{const c=(o.c||{})[k];if(c===undefined)return;if(!c||typeof c!='object')throw Error('Bad component: '+k);if((c.hex&&!/^#[0-9a-f]{6}$/i.test(c.hex))||(c.bx&&!/^#[0-9a-f]{6}$/i.test(c.bx)))throw Error('Bad hex in '+k)});
-Object.entries(o.m||{}).forEach(([k,h])=>{if(!KS.includes(k)||!/^#[0-9a-f]{6}$/i.test(h))throw Error('Bad mask entry '+k)});const R={v:1,leg:o.leg!==false,lm:LM.some(x=>x[0]==o.lm)?o.lm:LM[0][0],ge:o.ge===true,gt:typeof o.gt==='string'?o.gt:'',asp:typeof o.asp==='string'&&o.asp.trim()?o.asp:'21:9',tpl:Object.fromEntries(Object.entries(o.tpl&&typeof o.tpl==='object'?o.tpl:{}).filter(([k,v])=>TD[k]!==undefined&&typeof v==='string'&&v!==TD[k])),mn:Object.fromEntries(Object.entries(o.mn&&typeof o.mn==='object'?o.mn:{}).filter(([k,v])=>KS.includes(k)&&typeof v==='string'&&/^[A-Za-z0-9 -]{1,40}$/.test(v))),lb:Object.fromEntries(Object.entries(o.lb&&typeof o.lb=='object'?o.lb:{}).filter(([k,v])=>KS.includes(k)&&isS(v)&&v.trim().slice(0,80)!==dN(k)).map(([k,v])=>[k,v.trim().slice(0,80)])),ap:Object.fromEntries(Object.entries(o.ap&&typeof o.ap=='object'?o.ap:{}).filter(([k,v])=>KS.includes(k)&&isS(v))),tg:cleanTags(o.tg,[...KS,'ge']),tt:cleanTags(o.tt,TDK.map(x=>x[0]),TTMAX,TTT),cx:cxs,bl:Object.fromEntries(Object.entries(o.bl&&typeof o.bl=='object'?o.bl:{}).filter(([k,v])=>KS.includes(k)&&isS(v)).map(([k,v])=>[k,v.trim().slice(0,80)])),cam:CAMT.some(x=>x.id===o.cam)?o.cam:'',c:Object.fromEntries(KS.map(k=>{const BB=B['c'][k]||F(),q={...BB,...((o.c||{})[k]||{})};delete q.pat;if(k=='pendant'&&!o.c.pendant&&o.c.hw&&PEND.includes(o.c.hw.pend))q.pend=o.c.hw.pend;if((C[k]||{}).t!='floor'){if(q.fin==='Wire-brushed'){q.tx='Wire-Brushed';q.fin='Satin'}else if(/^Lime/.test(q.fin||'')){q.tx='Lime Wash / Cerused';q.fin='Satin'}}if(!PH[q.stone])q.stone=BB.stone;const sm=SPMAP[q.sp];if(sm){q.sp=sm[0];if(sm[1]&&(C[k]||{}).t!='floor')q.gr=sm[1]}if(!SPH[q.sp])q.sp=BB.sp;
+Object.entries(o.m||{}).forEach(([k,h])=>{if(!KS.includes(k)||!/^#[0-9a-f]{6}$/i.test(h))throw Error('Bad mask entry '+k)});const R={v:1,leg:o.leg!==false,lm:LM.some(x=>x[0]==o.lm)?o.lm:LM[0][0],ge:o.ge===true,gt:typeof o.gt==='string'?o.gt:'',asp:typeof o.asp==='string'&&o.asp.trim()?o.asp:'21:9',tpl:Object.fromEntries(Object.entries(o.tpl&&typeof o.tpl==='object'?o.tpl:{}).filter(([k,v])=>TD[k]!==undefined&&typeof v==='string'&&v!==TD[k])),mn:Object.fromEntries(Object.entries(o.mn&&typeof o.mn==='object'?o.mn:{}).filter(([k,v])=>KS.includes(k)&&typeof v==='string'&&/^[A-Za-z0-9 -]{1,40}$/.test(v))),lb:Object.fromEntries(Object.entries(o.lb&&typeof o.lb=='object'?o.lb:{}).filter(([k,v])=>KS.includes(k)&&isS(v)&&v.trim().slice(0,80)!==dN(k)).map(([k,v])=>[k,v.trim().slice(0,80)])),ap:Object.fromEntries(Object.entries(o.ap&&typeof o.ap=='object'?o.ap:{}).filter(([k,v])=>KS.includes(k)&&isS(v))),tg:cleanTags(o.tg,[...KS,'ge']),tt:cleanTags(o.tt,TDK.map(x=>x[0]),TTMAX,TTT),cx:cxs,bl:Object.fromEntries(Object.entries(o.bl&&typeof o.bl=='object'?o.bl:{}).filter(([k,v])=>KS.includes(k)&&isS(v)).map(([k,v])=>[k,v.trim().slice(0,80)])),cam:CAMT.some(x=>x.id===o.cam)?o.cam:'',ex:Object.fromEntries(Object.entries(o.ex&&typeof o.ex=='object'&&!Array.isArray(o.ex)?o.ex:{}).filter(([k,v])=>BK.includes(k)&&v===true)),c:Object.fromEntries(KS.map(k=>{const BB=B['c'][k]||F(),q={...BB,...((o.c||{})[k]||{})};delete q.pat;if(k=='pendant'&&!o.c.pendant&&o.c.hw&&PEND.includes(o.c.hw.pend))q.pend=o.c.hw.pend;if((C[k]||{}).t!='floor'){if(q.fin==='Wire-brushed'){q.tx='Wire-Brushed';q.fin='Satin'}else if(/^Lime/.test(q.fin||'')){q.tx='Lime Wash / Cerused';q.fin='Satin'}}if(!PH[q.stone])q.stone=BB.stone;const sm=SPMAP[q.sp];if(sm){q.sp=sm[0];if(sm[1]&&(C[k]||{}).t!='floor')q.gr=sm[1]}if(!SPH[q.sp])q.sp=BB.sp;
 if(GRM[q.gr])q.gr=GRM[q.gr];if(!GPH[q.gr])q.gr=BB.gr;
 if(q.tx==='Hand-Scraped'){q.tx='Smooth Sanded';q.ds=[...new Set([...(q.ds||[]),'Hand Scraping'])]}else if(q.tx==='Lime Wash / Cerused')q.tx='Cerusing / Liming';
 if(!TXP[q.tx])q.tx=BB.tx;if(!Array.isArray(q.ds))q.ds=[];q.ds=q.ds.filter(x=>DSP[x]);
 if(!PGP[q.pg])q.pg=BB.pg;if(!STH[q.stc])q.stc=BB.stc;if(!PNH[q.pc])q.pc=BB.pc;if(!GCH[q.gc])q.gc=BB.gc;if(!TS_STAIN.includes(q.stt))q.stt='As is';if(!TS_PAINT.includes(q.pt))q.pt='As is';if(!COV.includes(q.cov))q.cov=COV[0];
-return[k,q]})),m:o.m||{}};if(R.cam&&typeof R.tpl.cam!='string')R.tpl.cam=camBuild(R.cam,R.lm);return R}
+/* V3.3: configs saved before Upper/Transom became synced carry no syv marker; their existing independent look is kept by loading them unlocked. */
+if(o.syv!==1&&(k=='upper'||k=='transom')&&(o.c||{})[k])q.un=true;
+return[k,q]})),m:o.m||{},syv:1};if(R.cam&&typeof R.tpl.cam!='string')R.tpl.cam=camBuild(R.cam,R.lm);return R}
 function apply(s){S=s;syncCustom();buildAcc();out()}
 $('#ex').onclick=()=>{const t=JSON.stringify(S,null,1);$('#cfg').value=t;dl('kitchen_config.json',t)};
 $('#im').onclick=()=>{try{apply(parse($('#cfg').value));toast('Config imported')}catch(e){toast(e.message,1)}};
@@ -471,7 +505,9 @@ $('#fj').onchange=e=>{const f=e.target.files[0];f&&f.text().then(t=>{try{const r
 function showCK(){$('#ck').innerHTML='<table><tr><th>Component</th><th>Sampled</th><th>Target</th><th>ΔE2000</th><th></th></tr>'+CK.map(x=>`<tr><td>${lbl(x.k)}</td><td><i class="sw" style="background:${x.got}"></i> ${x.got}</td><td><i class="sw" style="background:${x.tg}"></i> ${x.tg}</td><td>${x.de.toFixed(1)}</td><td class="${x.pass?'ok':'er'}">${x.pass?'PASS':'FAIL'}</td></tr>`).join('')+'</table>'}
 $('#cr').onclick=e=>{const k=$('#rs').value,c=S.c[eff(k)];let tg=$('#tg').value.trim().toUpperCase();if(tg&&tg[0]!='#')tg='#'+tg;if(!/^#[0-9A-F]{6}$/.test(tg))tg=c.mode=='solid'&&k!='hw'?c.hex:'';if(!tg)return toast('Not a solid colour: enter a target hex',1);const got=samp($('#cr'),e,9),de=dE(got,tg);CK.unshift({k,got,tg,de,pass:de<=+$('#th').value});showCK()};
 const FX=[['3E6393','Tint 90','ECEFF4'],['3E6393','Tint 72','C9D3E1'],['3E6393','Tint 36','839BBA'],['3E6393','Shade 28','2C4769'],['3E6393','Shade 85','090F16'],['4D636F','Tint 90','EDEFF1'],['4D636F','Tint 54','ADB7BD'],['4D636F','Shade 57','212B30'],['1D3557','Tint 75','C6CCD5'],['1D3557','Tint 45','8390A3'],['1D3557','Tint 15','3F5370'],['1D3557','Shade 42','111E32'],['1D3557','Shade 85','04080D'],['4682B4','Tint 68','C3D6E7'],['4682B4','Shade 64','192F41'],['4F828E','Tint 54','AEC6CB'],['6DA7A6','Shade 85','101919']];
-const wS=(mut,fn)=>{const o=S;S=JSON.parse(JSON.stringify(o));try{mut(S);return fn()}finally{S=o}};
+/* V3.3: Upper and Transom are synced to Base by default. The earlier material tests exercise their own controls, so this sandbox starts them unlocked (the V3.29 behaviour); wSd keeps the true defaults for the sync tests. */
+const wS=(mut,fn)=>{const o=S;S=JSON.parse(JSON.stringify(o));S.c.upper.un=S.c.transom.un=true;try{mut(S);return fn()}finally{S=o}};
+const wSd=(mut,fn)=>{const o=S;S=JSON.parse(JSON.stringify(o));try{mut(S);return fn()}finally{S=o}};
 const SN=[['default state',s=>{},['• Base Cabinets & Pantries: light steel blue (#B0C4DE), applied as a pristine, smooth painted cabinet-grade enamel finish with absolutely no visible wood grain, pore texture, or timber patterning, featuring a satin low-sheen finish','PHOTOGRAPHIC MATERIAL AND RENDERING TARGET','matches the main countertop','LIGHTING','Set the LIGHTING_MODE to Neutral Daylight:'],['terminal & corner pantry cabinets:','Terminal & Corner Pantry Cabinets:','material mask','REGION MAP','MASK REGION RULES','GEOMETRY EXCEPTIONS']],
 ['wood uppers',s=>{Object.assign(s.c.upper,{mode:'wood',sp:'American Walnut',gr:'Book-matched Vertical'})},['authentic American walnut wood','mirrored book-matched pattern','finished with a smooth-sanded surface showing a uniform satin sheen'],[]],
 ['unlocked terminal',s=>{Object.assign(s.c.terminal,{un:true,hex:'#1D3557',bx:'#1D3557'})},['Terminal & Corner Pantry Cabinets:','#1D3557'],[]],
@@ -601,9 +637,9 @@ go({dataset:{a:'lb',k:'base'},value:'  '});if('base' in S.lb)return'empty did no
 go({dataset:{a:'lb',k:'base'},value:'Base Cabinets & Plinth'});if('base' in S.lb)return'default name stored';
 S.m.terminal='#FF8000';go({dataset:{a:'lb',k:'terminal'},value:'Pantry Tower'});if(!compile().includes('• Pantry Tower:'))return'terminal row title';
 const rt=parse(JSON.stringify(S));return rt.lb.terminal=='Pantry Tower'&&JSON.stringify(rt)==JSON.stringify(S)?null:'round-trip'}))],
-['V3 appendix: appended directly after the generated description (also with Refine); empty by default; excluded components stay out',()=>wC(()=>wS(s=>z0(s),()=>{const base=dd('upper');if(compile().includes('hand-rubbed'))return'not empty by default';
-go({dataset:{a:'ap',k:'upper'},value:' with a hand-rubbed edge '});if(!compile().includes('• Upper Cabinets: '+base+' with a hand-rubbed edge\n'))return'not appended';
-const o=RF;RF=true;try{if(!compile().includes(refine('upper')+') with a hand-rubbed edge\n'))return'refine order'}finally{RF=o}
+['V3 appendix: appended after the generated description, which a period closes first (V3.3; also with Refine); empty by default; excluded components stay out',()=>wC(()=>wS(s=>z0(s),()=>{const base=dd('upper');if(compile().includes('hand-rubbed'))return'not empty by default';
+go({dataset:{a:'ap',k:'upper'},value:' with a hand-rubbed edge '});if(!compile().includes('• Upper Cabinets: '+base+'. with a hand-rubbed edge\n'))return'not appended';
+const o=RF;RF=true;try{if(!compile().includes(refine('upper')+'). with a hand-rubbed edge\n'))return'refine order'}finally{RF=o}
 S.m={base:'#FF0000'};if(compile().includes('hand-rubbed'))return'excluded component leaked';
 go({dataset:{a:'ap',k:'upper'},value:''});return'upper' in S.ap?'not cleared':null}))],
 ['V3 custom components (schema 3): registered with an empty description; appendix is the whole block; hidden-but-registered and absent handled; legacy ignores them',()=>wC(()=>wS(s=>{z0(s);s.m.wall='#808080'},()=>{
@@ -833,7 +869,159 @@ TESTS.push(...TESTS28);
 /* V3.29 tests */
 TESTS.push(['V3.29 header: repository link opens in a new tab safely, creator email is a mailto link, both sit under the title; neither leaks into the prompt',()=>{const a=[...document.querySelectorAll('aside .meta a')];if(a.length!=2)return'links '+a.length;const g=a[0],m=a[1];if(g.getAttribute('href')!=='https://github.com/mrmizomsn/Any-Kitchen-Prompt-Generator'||g.target!=='_blank'||g.rel!=='noopener noreferrer')return'repo link attributes';if(m.getAttribute('href')!=='mailto:mr_mizo@msn.com'||m.textContent!=='mr_mizo@msn.com'||m.target)return'email link';
 const h=document.querySelector('aside h1');if(!h||h.compareDocumentPosition(g)&Node.DOCUMENT_POSITION_PRECEDING)return'not after the title';return/github\.com|mr_mizo/.test(compile())?'leaked into the prompt':null}]);
-function runT(){TESTING=true;try{runT0()}finally{TESTING=false;syncLabelUI();out()}}
+/* V3.3 tests */
+const accOpen=()=>[...document.querySelectorAll('#acc>details')].map(d=>d.open),rbk=op=>{rebuildKeep();document.querySelectorAll('#acc>details').forEach((d,i)=>{if(op&&i<op.length)d.open=op[i]});out()};
+TESTS.push(
+['V3.3 custom components from the dashboard: name input + add button always present; adding registers a custom item with an empty mask and an empty description; listed in both Image Lab dropdowns; appendix is the whole description; remove cleans everything; duplicates, blanks and the cap are refused; Enter adds; persists and round-trips',()=>{let r;const op=accOpen();try{r=wC(()=>wS(s=>{z0(s)},()=>{
+ const addB=()=>document.querySelector('[data-a="cxadd"]');if(!$('#cxn')||!addB())return'no name input / add button before any custom component';
+ const inp=()=>$('#cxn'),n0=Object.keys(C).length;
+ inp().value='   ';addB().click();if(CUS().length)return'blank name accepted';
+ inp().value='Pizza   Oven';addB().click();if(CUS().length!=1)return'not added ('+CUS().length+')';
+ const k=CUS()[0];if(!KEYRX.test(k))return'bad key '+k;if(C[k].n!=='Pizza Oven'||S.cx[k].n!=='Pizza Oven')return'name not tidied: '+C[k].n;if(!S.c[k])return'no material record';
+ if(S.m[k]||S.mn[k])return'mask not empty by default';if(Object.keys(C).length!=n0+1)return'component count';
+ for(const id of['#ms','#rs']){const o=[...$(id).options].find(x=>x.value==k);if(!o||o.textContent!=='Pizza Oven')return'not listed in '+id}
+ if(!/Pizza Oven[\s\S]*not set/.test($('#ml').textContent))return'Masks list does not show it as not set';
+ if(inp().value!=='')return'input not cleared after adding';if(!$('#acc').textContent.includes('Remove custom component'))return'no remove button';
+ if(desc(k)!==''||dd(k)!=='')return'description not empty';if(compile().includes('Pizza Oven'))return'listed with no description';
+ go({dataset:{a:'ap',k},value:'a stone pizza oven with a black steel door.'});
+ if(!compile().includes('\u2022 Pizza Oven: a stone pizza oven with a black steel door.\n'))return'appendix is not the whole description';
+ if(/oven\.\. |\. a stone/.test(compile()))return'period added to a custom component';
+ S.m.base='#FF0000';if(compile().includes('Pizza Oven'))return'unmasked custom component not excluded while the mask is active';
+ S.m[k]='#123456';if(!compile().includes('\u2022 Pizza Oven: a stone pizza oven'))return'masked custom component missing';
+ if(!compile().includes('Pizza Oven (#123456)')&&!/region = Pizza Oven/.test(compile()))return'not in the region map';
+ inp().value='pizza oven';addB().click();if(CUS().length!=1)return'duplicate name accepted';
+ inp().value='Upper Cabinets';addB().click();if(CUS().length!=1)return'name of a built-in accepted';
+ const rt=parse(JSON.stringify(S));if(JSON.stringify(rt)!==JSON.stringify(S))return'export/import round-trip differs';if(!rt.cx[k]||rt.ap[k]!=='a stone pizza oven with a black steel door.'||rt.m[k]!=='#123456')return'custom data lost on import';
+ inp().value='Wine Fridge';inp().dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true}));if(CUS().length!=2)return'Enter did not add';
+ const ks=CUS();if(new Set(ks).size!=2)return'duplicate keys';
+ go({dataset:{a:'cxdel',k},value:''});if(C[k]||S.cx[k]||S.c[k]||S.m[k]||S.ap[k])return'remove left data behind';
+ for(const id of['#ms','#rs'])if([...$(id).options].some(x=>x.value==k))return'removed item still listed in '+id;
+ if(CUS().length!=1||!$('#cxn'))return'add control lost after remove';
+ let i=0;while(CUS().length<CXMAX&&i++<60)cxAdd('Extra '+i);if(CUS().length!=CXMAX)return'could not reach the cap';
+ if(cxAdd('One too many')!==null||CUS().length!=CXMAX)return'cap not enforced';
+ return null}))}finally{rbk(op)}return r}],
+['V3.3 appendix period: a filled appendix on a normal component follows a period after the generated description (also with Refine, merged lines and every built-in component); an empty or blank appendix leaves the text unchanged; custom components are untouched',()=>wC(()=>wS(s=>z0(s),()=>{
+ if(apJoin('x','y')!=='x. y'||apJoin('x.','y')!=='x. y'||apJoin('x!','y')!=='x! y'||apJoin('x?','y')!=='x? y'||apJoin('','y')!=='y')return'apJoin rules';
+ const base=dd('base');if(/\.$/.test(base))return'unexpected period in the plain description';
+ S.ap.base='   ';if(dd('base')!==base)return'blank appendix changed the text';delete S.ap.base;if(dd('base')!==base)return'empty appendix changed the text';
+ S.ap.base='with a hand-rubbed edge';if(dd('base')!==base+'. with a hand-rubbed edge')return'period missing: '+dd('base').slice(-60);
+ if(!compile().includes('\u2022 Base Cabinets & Pantries: '+base+'. with a hand-rubbed edge\n'))return'not in the compiled row';
+ S.ap.base='line one\n  line two';if(dd('base')!==base+'. line one line two')return'multi-line appendix';
+ const o=RF;try{RF=true;S.ap.base='with a hand-rubbed edge';const t=desc('base')+' ('+refine('base')+')';if(dd('base')!==t+'. with a hand-rubbed edge')return'refine: '+dd('base').slice(-70)}finally{RF=o}
+ delete S.ap.base;
+ for(const k of BK){const t0=dd(k);S.ap[k]='EXTRA';const t1=dd(k);delete S.ap[k];if(!t0)continue;if(t1!==(/[.!?]$/.test(t0)?t0:t0+'.')+' EXTRA')return k+': '+t1.slice(-50)}
+ S.m={base:'#FF0000'};S.ap.upper='ignored';if(compile().includes('ignored'))return'excluded component leaked';S.m={};delete S.ap.upper;
+ S.cx.cx_pt={n:'Thing'};syncCustom();S.ap.cx_pt='a thing, exactly as typed';if(dd('cx_pt')!=='a thing, exactly as typed')return'custom text changed';
+ if(!compile().includes('\u2022 Thing: a thing, exactly as typed\n'))return'custom row';return null}))],
+['V3.3 Upper & Transom default to live sync with Base: synced panel offers Unlock to edit; Unlock makes them independent; Re-sync restores the live link; saved states, exports, presets and older configs stay correct',()=>wSd(s=>{},()=>{
+ if(C.upper.sync!=='base'||C.transom.sync!=='base')return'sync not declared';
+ const d=D();if(d.c.upper.un||d.c.transom.un||d.syv!==1)return'defaults not synced';
+ if(eff('upper')!=='base'||eff('transom')!=='base'||eff('terminal')!=='base')return'effective source';
+ const B=desc('base');if(desc('upper')!==B||desc('transom')!==B)return'text differs from Base';
+ for(const k of['upper','transom']){const p=panel(k);if(!p.includes('Synced to Base Cabinets & Plinth (live)')||!p.includes('data-a="unlock"')||!/Unlock to edit/.test(p)||p.includes('data-a="mode"')||p.includes('data-a="resync"'))return k+': synced panel'}
+ S.c.base.mode='wood';S.c.base.sp='American Walnut';if(!desc('upper').includes('authentic American walnut wood')||desc('transom')!==desc('base'))return'not live';
+ S.c.base.mode='solid';S.c.base.hex=S.c.base.bx='#223344';
+ let c=compile();if(!c.includes('\u2022 Upper Cabinets: '+dd('base'))||!c.includes('\u2022 Transom Cabinets: '+dd('base')))return'rows do not follow Base';
+ S.ap.upper='own note';if(!dd('upper').endsWith('. own note')||dd('transom').includes('own note'))return'appendix is not per component';delete S.ap.upper;
+ go({dataset:{a:'unlock',k:'upper'},value:''});if(!S.c.upper.un||S.c.upper.hex!=='#223344')return'unlock did not copy Base';
+ let p=panel('upper');if(!p.includes('Unlocked, independent of Base Cabinets & Plinth')||!p.includes('data-a="resync"')||!/Re-sync/.test(p)||!p.includes('data-a="mode"'))return'unlocked panel';
+ if(panel('transom').includes('data-a="resync"'))return'transom unlocked too';
+ go({dataset:{a:'hex',k:'upper'},value:'#336699'});if(!desc('upper').includes('#336699')||desc('base').includes('#336699')||desc('transom').includes('#336699'))return'not independent';
+ S.c.base.hex=S.c.base.bx='#445566';if(desc('upper').includes('#445566')||!desc('transom').includes('#445566'))return'unlocked panel still follows Base / transom stopped following';
+ const ex=JSON.stringify(S),rt=parse(ex);if(JSON.stringify(rt)!==ex)return'round-trip with an unlocked panel';if(!rt.c.upper.un||rt.c.transom.un)return'sync state lost on import';
+ const sv=S;S=rt;try{if(!desc('upper').includes('#336699')||eff('transom')!=='base')return'imported state behaves differently'}finally{S=sv}
+ go({dataset:{a:'resync',k:'upper'},value:''});if(S.c.upper.un||desc('upper')!==desc('base'))return're-sync';if(!panel('upper').includes('data-a="unlock"'))return're-synced panel';
+ go({dataset:{a:'unlock',k:'transom'},value:''});go({dataset:{a:'resync',k:'transom'},value:''});if(S.c.transom.un||desc('transom')!==desc('base'))return'transom re-sync';
+ const leg=JSON.parse(JSON.stringify(D()));delete leg.syv;Object.assign(leg.c.upper,{hex:'#5B6770',bx:'#5B6770'});const L=parse(JSON.stringify(leg));
+ if(L.syv!==1||!L.c.upper.un||!L.c.transom.un||L.c.terminal.un||L.c.upper.hex!=='#5B6770')return'legacy config not kept independent';
+ const s2=S;S=L;try{if(eff('upper')!=='upper'||!desc('upper').includes('#5B6770'))return'legacy upper look lost'}finally{S=s2}
+ const leg2=JSON.parse(JSON.stringify(D()));delete leg2.syv;delete leg2.c.upper;delete leg2.c.transom;const L2=parse(JSON.stringify(leg2));if(L2.c.upper.un||L2.c.transom.un)return'legacy config without those panels should sync';
+ const cur=JSON.parse(JSON.stringify(D()));const L3=parse(JSON.stringify(cur));if(L3.c.upper.un||L3.c.transom.un)return'current config wrongly unlocked';
+ const pr=parse(JSON.stringify(JSON.parse(JSON.stringify(S))));if(JSON.stringify(pr)!==JSON.stringify(S))return'preset path';
+ return null})],
+['V3.3 Image Lab mask switch: deactivating drops all mask wording (no-mask prompt) while keeping every assigned colour; reactivating restores the exact mask prompt; stays in step with the Prompt tab checkbox; saved with the config',()=>wS(s=>{z0(s);s.m.base='#FF0000';s.m.wall='#00FF00';s.leg=true},()=>{
+ const b=$('#mtg');if(!b||!$('#mst'))return'no mask switch in Image Lab';if(!$('#t-lab').contains(b))return'switch is not inside Image Lab';
+ out();const on=compile();if(!on.includes('REGION MAP')||!on.includes('MASK REGION RULES'))return'mask not active at start';
+ if(b.getAttribute('aria-pressed')!=='true'||!/active/.test(b.textContent)||!$('#leg').checked)return'active state not shown';
+ b.click();if(S.leg!==false)return'not deactivated';
+ const off=compile();if(/REGION MAP|MASK REGION RULES|technical mask|mask colours/.test(off))return'mask wording while deactivated';
+ if(!off.includes('\u2022 Upper Cabinets:')||!off.includes('\u2022 Wall Paint & Finishes:'))return'no-mask prompt should list every component';
+ if(S.m.base!=='#FF0000'||S.m.wall!=='#00FF00')return'assigned colours were lost';
+ if(b.getAttribute('aria-pressed')!=='false'||!/deactivated/.test(b.textContent)||$('#leg').checked||!/kept but ignored/.test($('#mst').textContent))return'deactivated state not shown';
+ if(!/#FF0000/.test($('#ml').textContent))return'colours no longer listed in Image Lab';
+ const rt=parse(JSON.stringify(S));if(rt.leg!==false||rt.m.base!=='#FF0000'||rt.m.wall!=='#00FF00')return'switch or colours not saved';
+ b.click();if(S.leg!==true)return'not reactivated';if(compile()!==on)return'reactivated prompt differs from the original mask prompt';
+ if(b.getAttribute('aria-pressed')!=='true'||!$('#leg').checked||!/in use/.test($('#mst').textContent))return'reactivated state not shown';
+ const l=$('#leg');l.checked=false;l.dispatchEvent(new Event('change',{bubbles:true}));if(S.leg!==false||b.getAttribute('aria-pressed')!=='false')return'Prompt-tab box does not drive the switch';
+ l.checked=true;l.dispatchEvent(new Event('change',{bubbles:true}));if(S.leg!==true||b.getAttribute('aria-pressed')!=='true')return'Prompt-tab box (on)';
+ S.m={};out();if(!/No mask colours assigned/.test($('#mst').textContent))return'empty-mask message';
+ return null})]);
+
+/* V3.31 tests: per-component "Include in prompt" checkbox */
+const incBox=k=>document.querySelector('input[data-a="inc"][data-k="'+k+'"]'),incRows=(p,k)=>p.split('\u2022 '+TT[k]+':').length-1,incWant=(k,P)=>k=='terminal'?(P.terminal&&!P.base?1:0):(P[k]?1:0);
+const incMask=()=>{const m={};BK.forEach((k,i)=>{m[k]='#'+((i+1)*0x0F0F0F).toString(16).padStart(6,'0').toUpperCase()});return m};
+const incPane=p=>{const d=document.createElement('div');d.innerHTML=promptHTML(p);return d.textContent===p};
+TESTS.push(
+['V3.31 checkbox UI: one ticked "Include in compiled prompt" box on each of the 16 standard components, none in GEOMETRY EXCEPTION, Template Structure Settings, Lighting Mode or custom components; an unticked box dims only its own panel',()=>{const op=accOpen();let r;try{r=wC(()=>wS(s=>{z0(s);s.ex={}},()=>{
+ rebuildKeep();const all=()=>[...document.querySelectorAll('#acc input[data-a="inc"]')];
+ if(BK.length!=16||all().length!=16)return'box count '+all().length;if(BK.some(k=>!incBox(k)))return'a component has no box';if(all().some(b=>!b.checked))return'not ticked by default';
+ if($('#p-ge').querySelector('[data-a="inc"]')||$('#p-tpl').querySelector('[data-a="inc"]'))return'box in Geometry Exception / Template section';
+ const lmS=[...document.querySelectorAll('#acc>details')].find(d=>d.querySelector('#p-lm'));if(!lmS||lmS.querySelector('[data-a="inc"]'))return'box in Lighting Mode';
+ if(['island','itop','spot','pendant'].some(k=>incBox(k).closest('[data-cb]').dataset.cb!=k))return'box not inside its own component block';
+ S.cx.cx_pt={n:'Thing'};syncCustom();rebuildKeep();if(document.querySelector('#acc [data-a="inc"][data-k="cx_pt"]')||all().length!=16)return'box on a custom component';
+ S.ex={upper:true};rebuildKeep();const u=incBox('upper'),w=document.querySelector('[data-cb="upper"]');
+ if(u.checked||!w.classList.contains('off')||document.querySelector('[data-cb="base"]').classList.contains('off'))return'unticked state not shown';
+ if(u.closest('.cbb')||!w.querySelector('.cbb #p-upper'))return'box dimmed with its panel / panel outside the dimmed area';return null}))}finally{rbk(op)}return r}],
+['V3.31 clicking the box: state, live prompt pane, dimming and autosave follow; re-ticking restores the byte-identical prompt',()=>wS(s=>{z0(s);s.ex={}},()=>{syncIncAll();out();const a=compile(),b=incBox('wall');if(!b)return'no box';
+ b.checked=false;b.dispatchEvent(new Event('change',{bubbles:true}));if(S.ex.wall!==true)return'state not set';const p=compile();if(p.includes('\u2022 Wall Paint & Finishes:'))return'row kept';
+ if($('#out').textContent!==p)return'live pane differs';if(!document.querySelector('[data-cb="wall"]').classList.contains('off'))return'not dimmed';if(parse(LASTSAVED).ex.wall!==true)return'not autosaved';
+ b.checked=true;b.dispatchEvent(new Event('change',{bubbles:true}));if('wall' in S.ex||compile()!==a||$('#out').textContent!==a)return'not restored';if(document.querySelector('[data-cb="wall"]').classList.contains('off'))return'still dimmed';
+ const n=Object.keys(S.ex).length;go({dataset:{a:'inc',k:'cx_zz'},checked:false,value:''});go({dataset:{a:'inc',k:'lm'},checked:false,value:''});return Object.keys(S.ex).length!=n?'non-component key accepted':null})],
+['V3.31 no-mask mode: unticking any one component removes exactly its row (a ticked Terminal row stays when Base is unticked, and Terminal merges into the Base row only while both are ticked); every other row is untouched; re-ticking restores the byte-identical prompt, with Refine Materials on or off',()=>wSd(s=>{s.m={};s.ex={};s.ge=false},()=>{const full=compile(),bad=[],plain=['upper','transom','glass','island','itop','hw','wall','floor','plumb','door','spot','pendant'];
+ for(const k of BK){S.ex={[k]:true};const p=compile(),P={};BK.forEach(x=>{P[x]=x!=k});BK.forEach(x=>{if(incRows(p,x)!=incWant(x,P))bad.push(k+'->'+x+' rows '+incRows(p,x))});
+  if(plain.includes(k)&&full.split('\n').filter(l=>!l.startsWith('\u2022 '+TT[k]+':')).join('\n')!==p)bad.push(k+': something besides its row changed');
+  if(/mask|MASK/.test(p))bad.push(k+': mask wording');if(withRF(true,()=>incRows(compile(),k))!=incWant(k,P)&&k!='terminal')bad.push(k+': Refine kept the row');delete S.ex[k];if(compile()!==full)bad.push(k+': not restored')}
+ S.ex={};BK.forEach(k=>{S.ex[k]=true});const none=compile();if(BK.some(k=>incRows(none,k)))bad.push('all unticked still lists rows');if(!none.includes('LIGHTING')||!none.includes(tget('taskNM').slice(0,40)))bad.push('all unticked broke the template');
+ return bad.length?bad.slice(0,4).join('; '):null})],
+['V3.31 mask mode: an unticked component leaves its row AND its REGION MAP line and is noted in the rule check; ticked-but-unmasked components stay excluded as before; mask wording and every other line remain',()=>wSd(s=>{s.m=incMask();s.ex={};s.leg=true},()=>{const full=compile(),bad=[];
+ if(!full.includes('REGION MAP')||rules().some(x=>/Include in prompt/.test(x)))bad.push('baseline');
+ for(const k of BK){S.ex={[k]:true};const p=compile(),P={};BK.forEach(x=>{P[x]=x!=k});BK.forEach(x=>{if(incRows(p,x)!=incWant(x,P))bad.push(k+'->'+x+' rows');if(p.includes('region = '+lbl(x))!=P[x])bad.push(k+'->'+x+' legend')});
+  if(!p.includes('REGION MAP (colour')||!p.includes('MASK REGION RULES'))bad.push(k+': mask wording lost');
+  const nt=rules().filter(x=>x.startsWith(lbl(k)+': excluded from the prompt (Include in prompt is unchecked)'));if(nt.length!=1||!/mask region/.test(nt[0]))bad.push(k+': rule note');delete S.ex[k];if(compile()!==full)bad.push(k+': not restored')}
+ S.m=incMask();delete S.m.pendant;S.ex={};let p=compile();if(incRows(p,'pendant')||!rules().some(x=>/Pendant Lights: excluded from the prompt \(no mask colour assigned\)/.test(x)))bad.push('unmasked ticked not excluded');
+ S.ex={pendant:true};p=compile();const n=rules().filter(x=>/^Pendant Lights: excluded/.test(x));if(incRows(p,'pendant')||n.length!=1||!/unchecked/.test(n[0])||/mask region/.test(n[0]))bad.push('unmasked + unticked: '+n.join('|'));
+ return bad.length?bad.slice(0,4).join('; '):null})],
+['V3.31 exhaustive: 400 random tick x mask subsets in both modes (present exactly once only if ticked and, with a mask, masked; legend and coloured pane agree; compile is deterministic)',()=>{const bad=[];let seed=31031;const rnd=()=>(seed=(seed*1103515245+12345)&0x7fffffff)/0x7fffffff,mc=incMask();
+ for(let n=0;n<400;n++)wSd(s=>{const mm=rnd()<.5;s.m={};s.ex={};s.leg=true;BK.forEach(k=>{if(mm&&rnd()<.65)s.m[k]=mc[k];if(rnd()<.4)s.ex[k]=true})},()=>{const mo=maskOn(),P={};BK.forEach(k=>{P[k]=!S.ex[k]&&(!mo||!!S.m[k])});
+  const p=compile();if(p!==compile())bad.push(n+': not deterministic');BK.forEach(k=>{if(incRows(p,k)!=incWant(k,P))bad.push(n+':'+k+' rows '+incRows(p,k));if(mo&&p.includes('region = '+lbl(k))!=P[k])bad.push(n+':'+k+' legend');if(S.ex[k]&&p.includes('region = '+lbl(k)))bad.push(n+':'+k+' unticked in legend')});
+  if(!mo&&/mask|MASK/.test(p))bad.push(n+': mask wording without a mask');if(!incPane(p))bad.push(n+': pane text differs')});return bad.length?bad.length+': '+bad.slice(0,3).join('; '):null}],
+['V3.31 synced components: unticking Base keeps Upper / Transom / Terminal (their text still follows Base); unticking one synced panel never touches the others; Island Countertop keeps its full text when the main countertop is unticked; Unlock / Re-sync leave the tick alone',()=>wSd(s=>{s.m={};s.ex={}},()=>{const bad=[],B=dd('base'),U=dd('upper'),T=dd('terminal'),Ct=dd('counter'),I=dd('itop');
+ S.ex={base:true};let p=compile();if(p.includes('\u2022 Base Cabinets & Pantries:'))bad.push('base row kept');if(!p.includes('\u2022 Upper Cabinets: '+B)||!p.includes('\u2022 Transom Cabinets: '+B))bad.push('upper/transom lost their synced text');if(!p.includes('\u2022 Terminal & Corner Pantry Cabinets: '+T))bad.push('terminal row lost');
+ S.ex={terminal:true};p=compile();if(!p.includes('\u2022 Base Cabinets & Pantries: '+B)||p.includes('\u2022 Terminal & Corner Pantry Cabinets:'))bad.push('terminal unticked wrong');
+ S.ex={upper:true};p=compile();if(p.includes('\u2022 Upper Cabinets:')||!p.includes('\u2022 Transom Cabinets: '+B)||!p.includes('\u2022 Base Cabinets & Pantries: '+B))bad.push('upper unticked touched siblings');
+ S.ex={counter:true};p=compile();if(p.includes('\u2022 Countertops & Backsplash:')||!p.includes('\u2022 Island Countertop: '+I)||p.includes('matches the main countertop'))bad.push('itop lost its full text');
+ S.ex={itop:true};p=compile();if(p.includes('\u2022 Island Countertop:')||!p.includes('\u2022 Countertops & Backsplash: '+Ct))bad.push('itop unticked wrong');
+ S.ex={upper:true};go({dataset:{a:'unlock',k:'upper'},value:''});if(S.ex.upper!==true||compile().includes('\u2022 Upper Cabinets:'))bad.push('unlock changed the tick');go({dataset:{a:'resync',k:'upper'},value:''});if(S.ex.upper!==true||compile().includes('\u2022 Upper Cabinets:'))bad.push('re-sync changed the tick');
+ if(dd('upper')!==U)bad.push('synced text changed');return bad.length?bad.join('; '):null})],
+['V3.31 rule check and colour logic ignore unticked components: Camera Flash conflict, Light Accents warm-LED sentence, ΔE separation pairs and shared-mask-colour ambiguity',()=>{const bad=[];
+ wSd(s=>{s.m={};s.ex={};s.lm='Camera Flash'},()=>{const f=()=>rules().filter(x=>/Camera Flash forbids/.test(x));if(f().length!=1)bad.push('baseline flag');S.ex={spot:true,pendant:true,accent:true};if(f().length)bad.push('flag kept with all three unticked');S.ex={spot:true,pendant:true};if(!f()[0]||!/Light Accents/.test(f()[0])||/Spotlights|Pendant/.test(f()[0]))bad.push('flag names unticked lights')});
+ wSd(s=>{s.m={};s.ex={};s.lm='Crisp Morning'},()=>{const w=()=>compile().includes('warm LED color temperatures');if(!w())bad.push('warm-LED baseline');S.ex={accent:true};if(w())bad.push('warm-LED sentence kept without Light Accents');if(compile().includes('\u2022 Light Accents:'))bad.push('accents row kept')});
+ wS(s=>{s.m={};s.ex={}},()=>{const has=k=>contrast().some(([a,b])=>a==k||b==k);if(!has('base'))bad.push('no base separation pair at baseline');S.ex={base:true};if(has('base'))bad.push('unticked base still in separation check');if(rules().some(x=>/Low separation: Base/.test(x)||/Low separation:.* vs Base/.test(x)))bad.push('unticked base flagged low separation')});
+ wS(s=>{s.m={base:'#112233',upper:'#112233'};s.ex={}},()=>{if(!rules().some(x=>/ambiguous/.test(x)))bad.push('ambiguity baseline');S.ex={upper:true};if(rules().some(x=>/ambiguous/.test(x)))bad.push('ambiguity kept for an unticked component')});
+ return bad.length?bad.join('; '):null}],
+['V3.31 persistence: autosave, export/import, presets and older configs carry the ticks; bad entries (unknown keys, custom keys, Lighting Mode, non-true values, wrong types) are dropped; key order matches the defaults',()=>{const bad=[];
+ wSd(s=>{s.ex={upper:true,wall:true}},()=>{persist();if(!parse(LASTSAVED).ex.upper)bad.push('autosave');const j=JSON.stringify(S),rt=parse(j);if(JSON.stringify(rt)!==j)bad.push('round-trip');if(Object.keys(rt.ex).sort().join()!='upper,wall')bad.push('ex lost');
+  const pr=parse(JSON.stringify(JSON.parse(JSON.stringify(S))));if(JSON.stringify(pr)!==j)bad.push('preset path');const c0=compile(),sv=S;S=rt;let c1;try{c1=compile()}finally{S=sv}if(c0!==c1)bad.push('imported state compiles differently');
+  const o=JSON.parse(j);o.cx={cx_q1:{n:'Q'}};o.ex={upper:true,base:false,glass:1,lm:true,cx_q1:true,bogus:true,hw:'yes',wall:true};const q=parse(JSON.stringify(o));if(Object.keys(q.ex).sort().join()!='upper,wall')bad.push('not sanitised: '+Object.keys(q.ex));
+  for(const v of[['upper'],'upper',null,5,true]){o.ex=v;if(Object.keys(parse(JSON.stringify(o)).ex).length)bad.push('wrong type kept: '+JSON.stringify(v))}
+  const old=JSON.parse(JSON.stringify(D()));delete old.ex;const L=parse(JSON.stringify(old));if(!L.ex||typeof L.ex!='object'||Array.isArray(L.ex)||Object.keys(L.ex).length)bad.push('older config');if(Object.keys(D()).join()!=Object.keys(parse(JSON.stringify(D()))).join())bad.push('key order');
+  if(Object.keys(D().ex).length)bad.push('default not all-included')});return bad.length?bad.join('; '):null}],
+['V3.31 scope: custom components and GEOMETRY EXCEPTIONS are never affected (even with every standard component unticked, in mask and no-mask mode); a custom key cannot be unticked',()=>wC(()=>wS(s=>{z0(s);s.ex={}},()=>{S.cx.cx_pt={n:'Thing'};syncCustom();S.ap.cx_pt='a thing';S.ge=true;S.gt='Widen the island.';BK.forEach(k=>{S.ex[k]=true});
+ go({dataset:{a:'inc',k:'cx_pt'},checked:false,value:''});if('cx_pt' in S.ex)return'custom key accepted';let p=compile();if(!p.includes('\u2022 Thing: a thing\n'))return'custom row dropped (no mask)';if(!p.includes('GEOMETRY EXCEPTIONS\nWiden the island.'))return'exception dropped (no mask)';if(BK.some(k=>incRows(p,k)))return'unticked rows present';
+ S.m={cx_pt:'#123456'};p=compile();if(!p.includes('\u2022 Thing: a thing\n')||!/region = Thing/.test(p))return'custom lost in mask mode';if(!p.includes('GEOMETRY EXCEPTIONS\nWiden the island.'))return'exception dropped (mask)';if(BK.some(k=>incRows(p,k)||p.includes('region = '+lbl(k))))return'unticked in mask prompt';
+ return incPane(p)?null:'pane text differs'}))]
+);
+function runT(){TESTING=true;try{runT0()}finally{TESTING=false;syncLabelUI();redrawAll();syncIncAll()}}
 function runT0(){let ok=0;const h=TESTS.map(([n,f])=>{let r;try{r=f()}catch(e){r='threw: '+e.message}if(!r)ok++;return`<div class="${r?'er':'ok'}">${r?'✗':'✓'} ${H(n)}${r?': '+H(r):''}</div>`});$('#tr').innerHTML=`<b>${ok}/${TESTS.length} passed</b>`+h.join('')}
 $('#rt').onclick=runT;
 function init(){try{S=parse(localStorage.getItem('kpg.s')||JSON.stringify(D()))}catch(e){S=D()}syncCustom();try{LOG=JSON.parse(localStorage.getItem('kpg.l')||'[]')}catch(e){LOG=[]}
